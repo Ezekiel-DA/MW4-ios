@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "711079B6-E78E-4975-BB7D-81DD79C14156"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "770DABF2-4545-4D7D-A2CD-8B729A7DFF91"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MW4-Savannah/CostumeController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "sendFWUpdate(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8DADCE9E-0D22-4083-A01D-9C2CC66B451E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MW4-Savannah/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "8DADCE9E-0D22-4083-A01D-9C2CC66B451E - ec3b230074d1807f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in closure #1 (AsyncBluetooth.CentralManagerEvent) -&gt; () in closure #2 @Sendable () async -&gt; () in Savannah_s_Team.ContentView.body.getter : some"
+                  moduleName = "Savannah&apos;s Team"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "8DADCE9E-0D22-4083-A01D-9C2CC66B451E - 2bf3e47785e20541"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (AsyncBluetooth.CentralManagerEvent) -&gt; () in closure #2 @Sendable () async -&gt; () in Savannah_s_Team.ContentView.body.getter : some"
+                  moduleName = "Savannah&apos;s Team"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "8DADCE9E-0D22-4083-A01D-9C2CC66B451E - c5bf741ac0666090"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (AsyncBluetooth.CentralManagerEvent) -&gt; () in closure #2 @Sendable () async -&gt; () in Savannah_s_Team.ContentView.body.getter : some"
+                  moduleName = "Savannah&apos;s Team"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
