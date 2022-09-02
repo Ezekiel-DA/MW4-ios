@@ -15,6 +15,7 @@ let centralManager = CentralManager()
 
 @MainActor class CostumeManager: ObservableObject {
     @Published var costumeService = CostumeService()
+    @Published var frontTextService = TextDisplayService()
     @Published var bluetoothUnavailable = false
     @Published var bluetoothOff = false
     @Published var device: Peripheral?
@@ -28,7 +29,10 @@ let centralManager = CentralManager()
                 case let .didUpdateState(state):
                     if (state == .poweredOn) {
                         Task {
-                            try await self.findBLEDevice()
+                            if (self.bluetoothOff) { // don't start a scan from here if bluetooth wasn't off and just toggled on
+                                self.bluetoothOff = false
+                                try await self.findBLEDevice()
+                            }
                         }
                     }
                 case .didDisconnectPeripheral:
@@ -81,5 +85,6 @@ let centralManager = CentralManager()
         device = peripheral
         
         await costumeService.setDevice(peripheral!)
+        await frontTextService.setDevice(peripheral!)
     }
 }

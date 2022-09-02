@@ -17,6 +17,7 @@ struct ContentView: View {
         NavigationView {
             if (costumeManager.device != nil) {
                 VStack {
+                    TextDisplayView(textDisplayService: costumeManager.frontTextService)
                     Button("Check for update") {
                         Task {
                             let res = try await fetchManifest()
