@@ -6,28 +6,16 @@
 //
 
 import SwiftUI
-import CoreBluetooth
-import AsyncBluetooth
-import Combine
 
 struct ContentView: View {
-    @ObservedObject var _costumeController: CostumeController = costumeController
-    @ObservedObject var _bleState = bleState
-    
+    @ObservedObject var costumeManager: CostumeManager
+        
     @State var _availableVersion: Int?
     @State var _fwURL = ""
-    
-    @State var _device: Peripheral?
-    
-    @State var _disconnectionSubscription: AnyCancellable?
-    
-    init() {
-        UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
-    }
-        
+
     var body: some View {
         NavigationView {
-            if (_device != nil) {
+            if (costumeManager.device != nil) {
                 VStack {
                     Button("Check for update") {
                         Task {
@@ -37,55 +25,25 @@ struct ContentView: View {
                         }
                     }
                     if let version = _availableVersion { Text("Available version: " + String(version)) }
-                    if let _ = _availableVersion { Button("Update firmware") {
-                        Task {
-                            let fw = try await fetchFirmwareFile(_fwURL)
-                            costumeController.sendFWUpdate(fw)
-                        }
-                    } }
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar { ToolbarItem(placement: .principal) { StatusBarView(connected: true, fwVersion: Int(_costumeController.fwVersion ?? 0)) } }
-                
-            } else {
-                Text(_bleState.bluetoothOff ? "Please turn Bluetooth on in Settings." : (_bleState.bluetoothUnavailable ? "Please allow \(Bundle.main.displayName) access to Bluetooth" : "Please turn on costume") )
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar { ToolbarItem(placement: .principal) { StatusBarView(connected: false) } }
-            }
-            
-
-                
-//
-        }.task {
-            do {
-                _disconnectionSubscription = centralManager.eventPublisher.sink(
-                    receiveValue: { value in
-                        switch (value) {
-                        case let .didUpdateState(state):
-                            if (state == .poweredOn) {
+                    if let _ = _availableVersion {
+                        VStack {
+                            Button("Update firmware") {
                                 Task {
-                                    _device = try await getBLEDevice()
+                                    let fw = try await fetchFirmwareFile(_fwURL)
+                                    await costumeManager.costumeService.sendFWUpdate(fw)
                                 }
                             }
-                        case .didDisconnectPeripheral:
-                            _device = nil
-                            Task {
-                                _device = try await getBLEDevice()
-                            }
+                            OTAProgressView(costumeService: costumeManager.costumeService)
                         }
                     }
-                )
-                
-                let res = try await getBLEDevice() // don't assign to our state yet since that would redraw this view and interrupt the rest of this?
-                guard let device = res else {
-                    return
                 }
-                // TODO: the above is probably a sign that our control flow is all sorts of messed up and we need to do this work elsewhere, tbh.
-                let fwVersion = await getFWVersion(device)
-                _costumeController.fwVersion = UInt8(fwVersion!)
-                _device = device
-            } catch {
-                
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar { ToolbarItem(placement: .principal) { StatusBarView(connected: true, costumeService: costumeManager.costumeService) } }
+
+            } else {
+                Text(costumeManager.bluetoothOff ? "Please turn Bluetooth on in Settings." : (costumeManager.bluetoothUnavailable ? "Please allow \(Bundle.main.displayName) access to Bluetooth" : "Please turn on costume") )
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar { ToolbarItem(placement: .principal) { StatusBarView(connected: false, costumeService: costumeManager.costumeService) } }
             }
         }
     }
@@ -93,7 +51,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(costumeManager: CostumeManager())
         
     }
 }

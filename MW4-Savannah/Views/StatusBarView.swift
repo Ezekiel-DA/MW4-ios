@@ -9,8 +9,8 @@ import SwiftUI
 
 struct StatusBarView: View {
     var connected: Bool
-    var fwVersion: Int?
-    
+    @ObservedObject var costumeService: CostumeService
+        
     var width: CGFloat = 100.0
     
     var body: some View {
@@ -30,8 +30,11 @@ struct StatusBarView: View {
             Spacer()
             Text("(not) The Voice™").font(.title2)
             Spacer()
-            if let version = fwVersion { Text("fw ver.: " + String(version)).font(.footnote)} else {
-                Text("fw ver.: ?").font(.footnote).opacity(0.2) 
+            if (connected) {
+                let version = costumeService.fwVersion != nil ? String(costumeService.fwVersion!) : "?"
+                Text("fw ver.: " + version).font(.footnote)
+            } else {
+                Text("fw ver.: ?").font(.footnote).opacity(0.2)
             }
         }
     }
@@ -39,6 +42,9 @@ struct StatusBarView: View {
 
 struct TopStatusBar_Previews: PreviewProvider {
     static var previews: some View {
-        StatusBarView(connected: true, fwVersion: 2)
+        Group {
+            StatusBarView(connected: true, costumeService: CostumeService())
+            StatusBarView(connected: false, costumeService: CostumeService())
+        }
     }
 }

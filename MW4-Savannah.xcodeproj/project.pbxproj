@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B33F8FD528C011B5001BE3D3 /* AsyncBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = B33F8FD428C011B5001BE3D3 /* AsyncBluetooth */; };
-		B33F8FDA28C01D96001BE3D3 /* AsyncBLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FD928C01D96001BE3D3 /* AsyncBLEManager.swift */; };
-		B33F8FE028C198CF001BE3D3 /* CostumeControllerModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FDF28C198CF001BE3D3 /* CostumeControllerModelView.swift */; };
+		B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */; };
+		B33F8FE228C1B56E001BE3D3 /* FrontTextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FE128C1B56E001BE3D3 /* FrontTextService.swift */; };
+		B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B375062228C1EF420076A244 /* OTAProgressView.swift */; };
 		B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */; };
 		B3CA5EB728BEB1D600F13DCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EB628BEB1D600F13DCE /* ContentView.swift */; };
 		B3CA5EB928BEB1D800F13DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */; };
@@ -17,12 +18,13 @@
 		B3CA5EC428BEB80200F13DCE /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */; };
 		B3CA5EC628BEBBEE00F13DCE /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC528BEBBEE00F13DCE /* BLEManager.swift */; };
 		B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC728BEC4E300F13DCE /* OTA.swift */; };
-		B3CA5ECA28BEDFB600F13DCE /* CostumeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC928BEDFB500F13DCE /* CostumeController.swift */; };
+		B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B33F8FD928C01D96001BE3D3 /* AsyncBLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncBLEManager.swift; sourceTree = "<group>"; };
-		B33F8FDF28C198CF001BE3D3 /* CostumeControllerModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeControllerModelView.swift; sourceTree = "<group>"; };
+		B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeManager.swift; sourceTree = "<group>"; };
+		B33F8FE128C1B56E001BE3D3 /* FrontTextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontTextService.swift; sourceTree = "<group>"; };
+		B375062228C1EF420076A244 /* OTAProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAProgressView.swift; sourceTree = "<group>"; };
 		B3CA5EB128BEB1D600F13DCE /* Savannah's Team.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savannah's Team.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MW4_SavannahApp.swift; sourceTree = "<group>"; };
 		B3CA5EB628BEB1D600F13DCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,7 +34,7 @@
 		B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		B3CA5EC528BEBBEE00F13DCE /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		B3CA5EC728BEC4E300F13DCE /* OTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTA.swift; sourceTree = "<group>"; };
-		B3CA5EC928BEDFB500F13DCE /* CostumeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeController.swift; sourceTree = "<group>"; };
+		B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +52,8 @@
 		B33F8FDB28C1983B001BE3D3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B3CA5EC928BEDFB500F13DCE /* CostumeController.swift */,
+				B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */,
+				B33F8FE128C1B56E001BE3D3 /* FrontTextService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -60,6 +63,7 @@
 			children = (
 				B3CA5EB628BEB1D600F13DCE /* ContentView.swift */,
 				B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */,
+				B375062228C1EF420076A244 /* OTAProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -67,7 +71,7 @@
 		B33F8FDD28C198B1001BE3D3 /* ModelViews */ = {
 			isa = PBXGroup;
 			children = (
-				B33F8FDF28C198CF001BE3D3 /* CostumeControllerModelView.swift */,
+				B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */,
 			);
 			path = ModelViews;
 			sourceTree = "<group>";
@@ -107,7 +111,6 @@
 				B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */,
 				B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */,
 				B3CA5EC528BEBBEE00F13DCE /* BLEManager.swift */,
-				B33F8FD928C01D96001BE3D3 /* AsyncBLEManager.swift */,
 				B3CA5EBA28BEB1D800F13DCE /* Preview Content */,
 			);
 			path = "MW4-Savannah";
@@ -197,14 +200,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */,
 				B3CA5EB728BEB1D600F13DCE /* ContentView.swift in Sources */,
 				B3CA5EC628BEBBEE00F13DCE /* BLEManager.swift in Sources */,
+				B33F8FE228C1B56E001BE3D3 /* FrontTextService.swift in Sources */,
 				B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */,
 				B3CA5EC428BEB80200F13DCE /* StatusBarView.swift in Sources */,
-				B3CA5ECA28BEDFB600F13DCE /* CostumeController.swift in Sources */,
+				B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */,
 				B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */,
-				B33F8FE028C198CF001BE3D3 /* CostumeControllerModelView.swift in Sources */,
-				B33F8FDA28C01D96001BE3D3 /* AsyncBLEManager.swift in Sources */,
+				B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,8 +419,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/manolofdez/AsyncBluetooth";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
