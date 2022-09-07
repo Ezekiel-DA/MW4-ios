@@ -12,16 +12,21 @@ let FastLEDHueGradient = Gradient(colors: [
 ])
 
 struct HColorPickerView: View {
+    let label: String
+    
     @State private var color: Double = 0
     
     var body: some View {
-        Slider(value: $color, in: 0...255)
-            .background(LinearGradient(gradient: FastLEDHueGradient, startPoint: .leading, endPoint: .trailing)).clipShape(Capsule())
+        VStack(alignment: .leading) {
+            Text(label)
+            Slider(value: $color, in: 0...255)
+                .background(LinearGradient(gradient: FastLEDHueGradient, startPoint: .leading, endPoint: .trailing)).clipShape(Capsule())
+        }
     }
 }
 
 struct HColorPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        HColorPickerView()
+        HColorPickerView(label: "Preview")
     }
 }

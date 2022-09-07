@@ -12,7 +12,20 @@ struct TextEffectsView: View {
         VStack {
             Image("textEffectsImage").resizable().frame(width: 150, height: 200)
             Spacer()
-            TextChooserView()
+            
+            Form {
+                Section {
+                    TextChooserView()
+                }
+                
+                Section {
+                    VStack(alignment: .leading) {
+                        HColorPickerView(label: "Text color")
+                    }
+                }
+            }
+            
+            BottomNavigationButtons().padding()
         }
     }
 }

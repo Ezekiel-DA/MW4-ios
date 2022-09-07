@@ -19,7 +19,6 @@ enum ScrollingModes: Int, CaseIterable {
         case .Up: return "Up"
         }
     }
-    
 }
 
 struct TextChooserView: View {
@@ -27,33 +26,22 @@ struct TextChooserView: View {
     @State private var picked: Int = 0
     
     var body: some View {
-        Form {
-            Section {
-                VStack(alignment: .leading) {
-                    Text("Text")
-                    TextField("I WANT YOU", text: $text)
-                        .frame(width: 300, alignment: .leading)
-                        .padding(4)
-                        .border(.black)
-                    Text("Scrolling")
-                    
-                    Picker(selection: $picked, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
-                        ForEach(ScrollingModes.allCases, id: \.rawValue) { item in
-                            Text(item.title).tag(item.rawValue)
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
-                
-                }
-                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            }
+        VStack(alignment: .leading) {
+            Text("Text")
+            TextField("I WANT YOU", text: $text)
+                .frame(width: 300, alignment: .leading)
+                .padding(4)
+                .border(.black)
+            Text("Scrolling")
             
-            Section {
-                VStack(alignment: .leading) {
-                    Text("Text color")
-                    HColorPickerView()
+            Picker(selection: $picked, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
+                ForEach(ScrollingModes.allCases, id: \.rawValue) { item in
+                    Text(item.title).tag(item.rawValue)
                 }
-            }
+            }.pickerStyle(SegmentedPickerStyle())
+        
         }
+        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
     }
 }
 

@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct ChairLightsView: View {
+    
     var body: some View {
-        Text("Chair lights")
+        VStack {
+            Image("chairLightsImage").resizable().frame(width: 150, height: 200)
+            Spacer()
+            
+            Form {
+                Section {
+                    VStack(alignment: .leading) {
+                        LightStripEffectChooserView(name: "")
+                    }
+                }
+                
+                Section {
+                    VStack(alignment: .leading) {
+                        LightStripEffectChooserView(name: "Button trigger")
+                    }
+                }
+            }
+            
+            BottomNavigationButtons().padding()
+        }
     }
 }
 

@@ -60,7 +60,7 @@ struct CostumeView: View {
                 Spacer()
                 Image("chairImage").resizable().aspectRatio(contentMode: .fit)
                 Spacer()
-                PreviewButtonView(action: {print("hello?")} )
+                PreviewButtonView(action: {} )
                     .padding(.bottom)
             }
             .navigationBarTitle("THE CHOICE")
