@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B325255328C7D8FB00D6C4D0 /* CostumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255228C7D8FB00D6C4D0 /* CostumeView.swift */; };
+		B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */; };
+		B325255728C7D96600D6C4D0 /* TextEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255628C7D96600D6C4D0 /* TextEffectsView.swift */; };
+		B325255928C7D97700D6C4D0 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255828C7D97700D6C4D0 /* AudioView.swift */; };
+		B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */; };
+		B325255D28C811A600D6C4D0 /* PedestalLightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */; };
+		B325255F28C8129A00D6C4D0 /* EffectsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */; };
 		B33F8FD528C011B5001BE3D3 /* AsyncBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = B33F8FD428C011B5001BE3D3 /* AsyncBluetooth */; };
 		B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */; };
 		B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B375062228C1EF420076A244 /* OTAProgressView.swift */; };
+		B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837528C8518F00CC29ED /* NavBarModifiers.swift */; };
+		B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837728C85D1B00CC29ED /* TextChooserView.swift */; };
+		B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837928C866E300CC29ED /* HColorPickerView.swift */; };
 		B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */; };
 		B3CA5EB728BEB1D600F13DCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EB628BEB1D600F13DCE /* ContentView.swift */; };
 		B3CA5EB928BEB1D800F13DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */; };
@@ -23,8 +33,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B325255228C7D8FB00D6C4D0 /* CostumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeView.swift; sourceTree = "<group>"; };
+		B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChairLightsView.swift; sourceTree = "<group>"; };
+		B325255628C7D96600D6C4D0 /* TextEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEffectsView.swift; sourceTree = "<group>"; };
+		B325255828C7D97700D6C4D0 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
+		B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewButtonView.swift; sourceTree = "<group>"; };
+		B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedestalLightsView.swift; sourceTree = "<group>"; };
+		B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsListItemView.swift; sourceTree = "<group>"; };
 		B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeManager.swift; sourceTree = "<group>"; };
 		B375062228C1EF420076A244 /* OTAProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAProgressView.swift; sourceTree = "<group>"; };
+		B380837528C8518F00CC29ED /* NavBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarModifiers.swift; sourceTree = "<group>"; };
+		B380837728C85D1B00CC29ED /* TextChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChooserView.swift; sourceTree = "<group>"; };
+		B380837928C866E300CC29ED /* HColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HColorPickerView.swift; sourceTree = "<group>"; };
 		B3CA5EB128BEB1D600F13DCE /* Savannah's Team.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savannah's Team.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MW4_SavannahApp.swift; sourceTree = "<group>"; };
 		B3CA5EB628BEB1D600F13DCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +87,15 @@
 				B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */,
 				B375062228C1EF420076A244 /* OTAProgressView.swift */,
 				B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */,
+				B325255228C7D8FB00D6C4D0 /* CostumeView.swift */,
+				B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */,
+				B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */,
+				B325255628C7D96600D6C4D0 /* TextEffectsView.swift */,
+				B325255828C7D97700D6C4D0 /* AudioView.swift */,
+				B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */,
+				B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */,
+				B380837728C85D1B00CC29ED /* TextChooserView.swift */,
+				B380837928C866E300CC29ED /* HColorPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -83,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				B3CA5EC728BEC4E300F13DCE /* OTA.swift */,
+				B380837528C8518F00CC29ED /* NavBarModifiers.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -204,15 +234,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */,
+				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
+				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
 				B3CA5EB728BEB1D600F13DCE /* ContentView.swift in Sources */,
+				B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */,
 				B3FA4F9E28C1FC1E00E8BF11 /* TextDisplayView.swift in Sources */,
+				B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */,
+				B325255728C7D96600D6C4D0 /* TextEffectsView.swift in Sources */,
 				B3CA5EC628BEBBEE00F13DCE /* BLEManager.swift in Sources */,
+				B325255328C7D8FB00D6C4D0 /* CostumeView.swift in Sources */,
 				B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */,
 				B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */,
 				B3CA5EC428BEB80200F13DCE /* StatusBarView.swift in Sources */,
+				B325255D28C811A600D6C4D0 /* PedestalLightsView.swift in Sources */,
+				B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */,
+				B325255F28C8129A00D6C4D0 /* EffectsListItemView.swift in Sources */,
 				B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */,
 				B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */,
 				B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */,
+				B325255928C7D97700D6C4D0 /* AudioView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

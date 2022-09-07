@@ -16,7 +16,8 @@ struct MW4_SavannahApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(costumeManager: costumeMgr)
+            //ContentView(costumeManager: costumeMgr)
+            CostumeView()
         }
     }
 }
@@ -28,5 +29,12 @@ extension Bundle {
         } else {
             return "?MISSING APP NAME?"
         }
+    }
+}
+
+extension UINavigationController {
+    // Remove back button text
+    open override func viewWillLayoutSubviews() {
+        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }

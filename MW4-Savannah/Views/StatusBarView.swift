@@ -28,7 +28,7 @@ struct StatusBarView: View {
                     .font(.footnote)
             }
             Spacer()
-            Text("(not) The Voice™").font(.title2)
+            Text("The Choice™").font(.title2)
             Spacer()
             if (connected) {
                 let version = costumeService.fwVersion != nil ? String(costumeService.fwVersion!) : "?"
