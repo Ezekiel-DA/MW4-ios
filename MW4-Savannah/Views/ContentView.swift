@@ -47,6 +47,7 @@ struct ContentView: View {
                     .toolbar { ToolbarItem(placement: .principal) { StatusBarView(connected: false, costumeService: costumeManager.costumeService) } }
             }
         }
+        
     }
 }
 

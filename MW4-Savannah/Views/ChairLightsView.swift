@@ -11,7 +11,14 @@ struct ChairLightsView: View {
     
     var body: some View {
         VStack {
-            Image("chairLightsImage").resizable().frame(width: 150, height: 200)
+            CostumeGraphicView(
+                chairLightColor: .white,
+                pedLightColor: .white,
+                isChairRainbow: false,
+                isPedRainbow: false,
+                txtDisplay: "I WANT YOU",
+                txtColor: .white)
+            
             Spacer()
             
             Form {
@@ -38,3 +45,5 @@ struct ChairLightsView_Previews: PreviewProvider {
         ChairLightsView()
     }
 }
+
+

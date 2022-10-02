@@ -39,8 +39,8 @@ struct LightStripEffectChooserView: View {
                 ForEach(LightModes.allCases, id: \.rawValue) { item in
                     Text(item.title).tag(item.rawValue)
                 }
-            }.pickerStyle(SegmentedPickerStyle())
-            
+            }
+            .pickerStyle(SegmentedPickerStyle())
         }
     }
 }

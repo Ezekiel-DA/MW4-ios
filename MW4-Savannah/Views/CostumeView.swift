@@ -58,7 +58,13 @@ struct CostumeView: View {
                         
                 }
                 Spacer()
-                Image("chairImage").resizable().aspectRatio(contentMode: .fit)
+                CostumeGraphicView(
+                    chairLightColor: .red,
+                    pedLightColor: .white,
+                    isChairRainbow: true,
+                    isPedRainbow: false,
+                    txtDisplay: "I WANT YOU",
+                    txtColor: .red)
                 Spacer()
                 PreviewButtonView(action: {} )
                     .padding(.bottom)
