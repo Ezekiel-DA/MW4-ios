@@ -11,12 +11,23 @@ struct BottomNavigationButtons: View {
     var body: some View {
         HStack {
             Button("Reset") {
-                
-            }.frame(minWidth: 140).padding().border(.black, width: 1).foregroundColor(.black)
-            Button("Done") {
-                
-            }.frame(minWidth: 140).padding().border(.black, width: 1).foregroundColor(.black)
+                           
+                       }
+                       .frame(minWidth: 140)
+                       .padding()
+                       .border(.black, width: 1)
+                       .foregroundColor(.black)
+                       
+                       Button("Done") {
+                           
+                       }
+                       .frame(minWidth: 140)
+                       .padding()
+                       .border(.black, width: 1)
+                       .foregroundColor(.black)
+    
         }
+        
     }
 }
 

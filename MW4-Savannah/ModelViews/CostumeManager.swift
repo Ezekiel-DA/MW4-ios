@@ -40,6 +40,10 @@ let centralManager = CentralManager()
                         await self.clearDevice()
                         try await self.findBLEDevice()
                     }
+                case .willRestoreState(state: let state):
+                    break
+                case .didConnectPeripheral(peripheral: let peripheral):
+                    break
                 }
             }
         )

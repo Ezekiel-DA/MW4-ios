@@ -11,36 +11,53 @@ enum LightModes: Int, CaseIterable {
     case White
     case Red
     case Rainbow
+    case Custom
+    
+    
     
     var title: String {
         switch self {
         case .White: return "White"
         case .Red: return "Red"
         case .Rainbow: return "Rainbow"
+        case .Custom: return "Custom"
         }
     }
 }
 
 struct LightStripEffectChooserView: View {
     let name: String
-    
     @State private var isOn: Bool = true
+    @State private var testCustom: Bool=true
     @State private var picked: Int = 0
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if (name != "") {
                 Toggle(isOn: $isOn) { Text(name).fontWeight(.heavy) }
             }
-            HColorPickerView(label: "Color")
-            Divider()
+            
+            Text("Color")
             
             Picker(selection: $picked, label: Text("Or")) {
                 ForEach(LightModes.allCases, id: \.rawValue) { item in
-                    Text(item.title).tag(item.rawValue)
+                    VStack{
+
+                        Text(item.title).tag(item.rawValue)
+                    }
+                       
+                    
+                   
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
+            Divider()
+            
+            if (picked == 3){
+                HColorPickerView(label: "Color")
+                
+            }
+
         }
     }
 }

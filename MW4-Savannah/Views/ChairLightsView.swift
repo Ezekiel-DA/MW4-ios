@@ -29,12 +29,17 @@ struct ChairLightsView: View {
             }
             
             BottomNavigationButtons().padding()
+      
         }
     }
 }
 
 struct ChairLightsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChairLightsView()
+        ForEach(["iPhone 7 Plus", "iPhone Xs"], id: \.self) { deviceName in
+            ChairLightsView()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
     }
 }

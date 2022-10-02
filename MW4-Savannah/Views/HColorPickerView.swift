@@ -18,7 +18,7 @@ struct HColorPickerView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(label)
+            //Text(label)
             Slider(value: $color, in: 0...255)
                 .background(LinearGradient(gradient: FastLEDHueGradient, startPoint: .leading, endPoint: .trailing)).clipShape(Capsule())
         }
