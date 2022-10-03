@@ -10,7 +10,13 @@ import SwiftUI
 struct TextEffectsView: View {
     var body: some View {
         VStack {
-            Image("textEffectsImage").resizable().frame(width: 150, height: 200)
+            CostumeGraphicView(
+                chairLightColor: .white,
+                pedLightColor: .white,
+                isChairRainbow: false,
+                isPedRainbow: false,
+                txtDisplay: "I WANT YOU",
+                txtColor: .white)
             Spacer()
             
             Form {

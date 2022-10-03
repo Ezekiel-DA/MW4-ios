@@ -32,6 +32,7 @@
 		B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */; };
 		B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */; };
 		B3FA4F9E28C1FC1E00E8BF11 /* TextDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */; };
+		D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */; };
 		D4A833E828CD8AD7002834FB /* RainbowColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A833E728CD8AD7002834FB /* RainbowColorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeService.swift; sourceTree = "<group>"; };
 		B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDisplayService.swift; sourceTree = "<group>"; };
 		B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayView.swift; sourceTree = "<group>"; };
+		D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostumeGraphicView.swift; sourceTree = "<group>"; };
 		D4A833E728CD8AD7002834FB /* RainbowColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		B33F8FDC28C1984C001BE3D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */,
 				B3CA5EB628BEB1D600F13DCE /* ContentView.swift */,
 				B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */,
 				B375062228C1EF420076A244 /* OTAProgressView.swift */,
@@ -246,6 +249,7 @@
 				B380837E28C9210200CC29ED /* LightStripEffectChooserView.swift in Sources */,
 				B380837C28C9183100CC29ED /* BottomNavigationButtons.swift in Sources */,
 				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
+				D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */,
 				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
 				B3CA5EB728BEB1D600F13DCE /* ContentView.swift in Sources */,
 				B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */,
