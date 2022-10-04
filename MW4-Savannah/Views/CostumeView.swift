@@ -53,6 +53,10 @@ struct CostumeView: View {
                         editDestination: AnyView(item.view
                             .navigationTitle(item.title)
                             .navigationBarTitleDisplayMode(.inline)
+                            .toolbar{
+                                Button("Reset") {}
+                            }
+
                         )
                     )
                         

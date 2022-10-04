@@ -56,7 +56,7 @@ struct CostumeGraphicView: View {
                 .lineLimit(1)
                 .position(x: 200,y: 280)
                 
-        }
+        }.frame(height:300)
     }
 }
 

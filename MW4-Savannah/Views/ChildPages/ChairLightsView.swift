@@ -24,18 +24,18 @@ struct ChairLightsView: View {
             Form {
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(name: "")
+                        LightStripEffectChooserView(isButtonSection: false)
                     }
                 }
                 
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(name: "Button trigger")
+                        LightStripEffectChooserView(isButtonSection: true)
                     }
                 }
             }
             
-            BottomNavigationButtons().padding()
+           // BottomNavigationButtons().padding()
       
         }
     }

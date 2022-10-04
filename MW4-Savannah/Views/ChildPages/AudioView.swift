@@ -1,5 +1,5 @@
 //
-//  TextEffectsView.swift
+//  AudioView.swift
 //  MW4-Savannah
 //
 //  Created by Nicolas LEFEBVRE on 9/6/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TextEffectsView: View {
+struct AudioView: View {
     var body: some View {
         VStack {
             CostumeGraphicView(
@@ -17,27 +17,24 @@ struct TextEffectsView: View {
                 isPedRainbow: false,
                 txtDisplay: "I WANT YOU",
                 txtColor: .white)
-            Spacer()
-            
+            .frame(height:300)
+           
             Form {
+
                 Section {
-                    TextChooserView()
-                }
-                
-                Section {
-                    VStack(alignment: .leading) {
-                        HColorPickerView(label: "Text color")
-                    }
+                  //List doesn't seem to work with Form & Section?
+                   // It is not displaying correctly
+                    //Need to figure out later
+                    AudioChooserView()
                 }
             }
-            
-            BottomNavigationButtons().padding()
         }
+   
     }
 }
 
-struct TextEffectsView_Previews: PreviewProvider {
+struct AudioView_Previews: PreviewProvider {
     static var previews: some View {
-        TextEffectsView()
+        AudioView()
     }
 }

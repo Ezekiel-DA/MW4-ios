@@ -33,6 +33,9 @@
 		B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */; };
 		B3FA4F9E28C1FC1E00E8BF11 /* TextDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */; };
 		D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */; };
+		D48F810128EBC36300C6394C /* DivideSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810028EBC36300C6394C /* DivideSection.swift */; };
+		D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810628EBC9CE00C6394C /* AudioChooserView.swift */; };
+		D48F810A28EBDE0100C6394C /* SongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810928EBDE0100C6394C /* SongListView.swift */; };
 		D4A833E828CD8AD7002834FB /* RainbowColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A833E728CD8AD7002834FB /* RainbowColorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +67,9 @@
 		B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDisplayService.swift; sourceTree = "<group>"; };
 		B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayView.swift; sourceTree = "<group>"; };
 		D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostumeGraphicView.swift; sourceTree = "<group>"; };
+		D48F810028EBC36300C6394C /* DivideSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideSection.swift; sourceTree = "<group>"; };
+		D48F810628EBC9CE00C6394C /* AudioChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChooserView.swift; sourceTree = "<group>"; };
+		D48F810928EBDE0100C6394C /* SongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListView.swift; sourceTree = "<group>"; };
 		D4A833E728CD8AD7002834FB /* RainbowColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,23 +97,14 @@
 		B33F8FDC28C1984C001BE3D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */,
 				B3CA5EB628BEB1D600F13DCE /* ContentView.swift */,
 				B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */,
 				B375062228C1EF420076A244 /* OTAProgressView.swift */,
 				B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */,
 				B325255228C7D8FB00D6C4D0 /* CostumeView.swift */,
-				B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */,
-				B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */,
-				B325255628C7D96600D6C4D0 /* TextEffectsView.swift */,
-				B325255828C7D97700D6C4D0 /* AudioView.swift */,
-				B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */,
-				B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */,
-				B380837728C85D1B00CC29ED /* TextChooserView.swift */,
-				B380837928C866E300CC29ED /* HColorPickerView.swift */,
-				B380837B28C9183100CC29ED /* BottomNavigationButtons.swift */,
-				B380837D28C9210200CC29ED /* LightStripEffectChooserView.swift */,
-				D4A833E728CD8AD7002834FB /* RainbowColorView.swift */,
+				D48F810228EBC36E00C6394C /* ChildPages */,
+				D48F810528EBC99200C6394C /* Chooser */,
+				D48F810828EBDDBC00C6394C /* UIComponents */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,6 +164,42 @@
 				B3CA5EBB28BEB1D800F13DCE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D48F810228EBC36E00C6394C /* ChildPages */ = {
+			isa = PBXGroup;
+			children = (
+				B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */,
+				B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */,
+				B325255628C7D96600D6C4D0 /* TextEffectsView.swift */,
+				B325255828C7D97700D6C4D0 /* AudioView.swift */,
+			);
+			path = ChildPages;
+			sourceTree = "<group>";
+		};
+		D48F810528EBC99200C6394C /* Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				B380837728C85D1B00CC29ED /* TextChooserView.swift */,
+				B380837D28C9210200CC29ED /* LightStripEffectChooserView.swift */,
+				D48F810628EBC9CE00C6394C /* AudioChooserView.swift */,
+			);
+			path = Chooser;
+			sourceTree = "<group>";
+		};
+		D48F810828EBDDBC00C6394C /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */,
+				B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */,
+				B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */,
+				B380837928C866E300CC29ED /* HColorPickerView.swift */,
+				B380837B28C9183100CC29ED /* BottomNavigationButtons.swift */,
+				D4A833E728CD8AD7002834FB /* RainbowColorView.swift */,
+				D48F810028EBC36300C6394C /* DivideSection.swift */,
+				D48F810928EBDE0100C6394C /* SongListView.swift */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +284,9 @@
 				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
 				D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */,
 				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
+				D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */,
+				D48F810A28EBDE0100C6394C /* SongListView.swift in Sources */,
+				D48F810128EBC36300C6394C /* DivideSection.swift in Sources */,
 				B3CA5EB728BEB1D600F13DCE /* ContentView.swift in Sources */,
 				B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */,
 				B3FA4F9E28C1FC1E00E8BF11 /* TextDisplayView.swift in Sources */,
