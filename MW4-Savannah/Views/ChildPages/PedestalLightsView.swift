@@ -15,8 +15,11 @@ struct PedestalLightsView: View {
                 pedLightColor: .white,
                 isChairRainbow: false,
                 isPedRainbow: false,
-                txtDisplay: "I WANT YOU",
-                txtColor: .white)
+                txtDisplay: "MAGIC WHEELCHAIR",
+                txtColor: .white,
+                txtBgColor: .gray,
+                txtScroll: 0,
+                txtSpeed: 0.02)
             
             Spacer()
             

@@ -15,8 +15,11 @@ struct AudioView: View {
                 pedLightColor: .white,
                 isChairRainbow: false,
                 isPedRainbow: false,
-                txtDisplay: "I WANT YOU",
-                txtColor: .white)
+                txtDisplay: "MAGIC WHEELCHAIR",
+                txtColor: .white,
+                txtBgColor: .gray,
+                txtScroll: 0,
+                txtSpeed: 0.02)
             .frame(height:300)
             
                 Form {
