@@ -7,36 +7,31 @@
 
 import SwiftUI
 
-enum ScrollingModes: Int, CaseIterable {
-    case None
-    case Left
-    case Up
+
+enum TextColor: Int, CaseIterable {
+    case White
+    case Red
+    case Custom
     
     var title: String {
         switch self {
-        case .None: return "None"
-        case .Left: return "Left"
-        case .Up: return "Up"
+        case .White: return "White"
+        case .Red: return "Red"
+        case .Custom: return "Custom"
         }
     }
     
-    var graphics: String {
-        switch self {
-        case .None:
-            return "nosign"
-        case .Left:
-            return "arrow.left"
-        case .Up:
-            return "arrow.up"
-        }
-    }
 }
 
 struct TextChooserView: View {
     let isButtonSection: Bool
     @State private var isOn: Bool = true
+    @State private var isScrollingEnabled: Bool = false
     @State private var text: String = "I WANT YOU"
-    @State private var picked: Int = 0
+    @State private var colorPicked: Int = 0
+    @State private var rainbowModePicked: Int = 0
+    @State private var scrollingSpeed: Double = 100
+    
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -50,37 +45,47 @@ struct TextChooserView: View {
             }
             //Only show additional UI if the toggle is On
             if (isOn){
-                Text("Color")
-                Picker(selection: $picked, label: Text("Or")) {
-                    ForEach(LightModes.allCases, id: \.rawValue) { item in
+                Text("Text Color")
+                Picker(selection: $colorPicked, label: Text("Or")) {
+                    ForEach(TextColor.allCases, id: \.rawValue) { item in
                         VStack{
 
                             Text(item.title).tag(item.rawValue)
                         }
-                           
-                        
-                       
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 
-                if (picked == 3){
+           
+                
+                if (colorPicked == 2){
                     HColorPickerView(label: "Color")
+                    Divider()
 
                 }
                 
-                Text("Text")
+                Text("Text to display")
                 TextField("I WANT YOU", text: $text)
                     .frame(alignment: .leading)
                     .padding(4)
                     .border(.black)
-                Text("Scrolling")
-                
-                Picker(selection: $picked, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
-                    ForEach(ScrollingModes.allCases, id: \.rawValue) { item in
-                            //Text(item.title).tag(item.rawValue)
-                        Image(systemName: item.graphics).tag(item.rawValue)
+                Toggle(isOn: $isScrollingEnabled) { Text("Scrolling")}
+              
+                if(isScrollingEnabled){
+                    VStack(alignment: .leading){
+                        Divider()
+                        Text("Scrolling Speed")
+                        HStack{
+                            Image(systemName: "tortoise.fill").foregroundColor(.gray)
+                            Slider(value: $scrollingSpeed, in: 0...200)
+                            Image(systemName: "hare.fill").foregroundColor(.gray)
+                        
+                        }
+                        Divider()
                     }
-                }.pickerStyle(SegmentedPickerStyle())
+                  
+                
+                }
+                
             }
       
         

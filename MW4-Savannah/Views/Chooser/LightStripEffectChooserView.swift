@@ -25,10 +25,25 @@ enum LightModes: Int, CaseIterable {
     }
 }
 
+enum RainbowModes: Int, CaseIterable {
+    case Wave
+    case Cycle
+    
+    
+    
+    var title: String {
+        switch self {
+        case .Wave: return "Wave"
+        case .Cycle: return "Cycle"
+        }
+    }
+}
+
 struct LightStripEffectChooserView: View {
     let isButtonSection: Bool
     @State private var isOn: Bool = true
-    @State private var picked: Int = 0
+    @State private var colorPicked: Int = 0
+    @State private var rainbowModePicked: Int = 0
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -43,7 +58,7 @@ struct LightStripEffectChooserView: View {
             //Only show additional UI if the toggle is On
             if (isOn){
                 Text("Color")
-                Picker(selection: $picked, label: Text("Or")) {
+                Picker(selection: $colorPicked, label: Text("Or")) {
                     ForEach(LightModes.allCases, id: \.rawValue) { item in
                         VStack{
 
@@ -56,8 +71,21 @@ struct LightStripEffectChooserView: View {
                 }.pickerStyle(SegmentedPickerStyle())
                 
                 Divider()
-                
-                if (picked == 3){
+                if (colorPicked == 2) {
+                    HStack{
+                        Text("Rainbow Mode")
+                        Spacer()
+                        Picker(selection: $rainbowModePicked, label: Text("Or")) {
+                            ForEach(RainbowModes.allCases, id: \.rawValue) { item in
+                                VStack{
+                                    Text(item.title).tag(item.rawValue)
+                                }
+                            }
+                        }.pickerStyle(.menu)
+                    }
+                   
+                }
+                if (colorPicked == 3){
                     HColorPickerView(label: "Color")
                     
                 }

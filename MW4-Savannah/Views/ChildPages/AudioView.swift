@@ -18,16 +18,17 @@ struct AudioView: View {
                 txtDisplay: "I WANT YOU",
                 txtColor: .white)
             .frame(height:300)
-           
-            Form {
-
-                Section {
-                  //List doesn't seem to work with Form & Section?
-                   // It is not displaying correctly
-                    //Need to figure out later
-                    AudioChooserView()
+            
+                Form {
+                    Section {
+                      //List doesn't seem to work with Form & Section?
+                       // It is not displaying correctly
+                        //Need to figure out later
+                        AudioChooserView()
+                    }
                 }
-            }
+            
+          
         }
    
     }

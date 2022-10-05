@@ -38,36 +38,38 @@ struct AudioChooserView: View {
                             Text(item.title).tag(item.rawValue)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
-                VStack(alignment: .center){
+             
                     //If users choose Recorded Voice
                     if(picked==0){
-                        Text("Tip: Your voice will be recorded via the Pedestal. Lean closer for best result. Maximum length will be 10 seconds. ")
-                            .multilineTextAlignment(.center)
-                            .padding(.trailing)
+                        VStack(alignment: .center){
+                            Text("Tip: Your voice will be recorded via the Pedestal. Lean closer for best result. Maximum length will be 10 seconds. ")
+                                .multilineTextAlignment(.center)
+                                .padding(.trailing)
 
-                        Button {
-                        } label: {
-                            Image(systemName: "recordingtape")
-                                .imageScale(.large)
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(Color.blue)
-                                .background(Color.white)
-                                .clipShape(Circle())
-                                .shadow(color: .gray, radius: 2, x: 0, y: 1)
+                            Button {
+                            } label: {
+                                Image(systemName: "recordingtape")
+                                    .imageScale(.large)
+                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(Color.blue)
+                                    .background(Color.white)
+                                    .clipShape(Circle())
+                                    .shadow(color: .gray, radius: 2, x: 0, y: 1)
 
-                        }
-                        .padding(.bottom)
-                        Text("Hold to record")
-                            .fontWeight(.bold)
+                            }
                             .padding(.bottom)
+                            Text("Hold to record")
+                                .fontWeight(.bold)
+                                .padding(.bottom)
+                        }.padding(.top)
+                  
                         
                     }
                     //If users choose Song
                     else{
                        SongListView()
+                        
                     }
-                }
-                .padding(.top)
             }
  
             

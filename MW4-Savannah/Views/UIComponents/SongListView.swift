@@ -22,13 +22,18 @@ struct SongListView: View {
     @State private var singleSelection: UUID?
 
     var body: some View {
-        List{
-            Picker ("Choose a song", selection: $singleSelection){
-                ForEach(songs, id: \.self){ song in
-                    Text(song.name)
-                }
-            }.pickerStyle(.inline)
-        }
+    
+            Form{
+                    Picker (selection: $singleSelection,label: Text("Choose a song")){
+                        ForEach(songs, id:\.self){ song in
+                            Text(song.name)
+                        }
+                    }.pickerStyle(.inline)
+                
+            }
+        
+    
+   
         }
     }
 
