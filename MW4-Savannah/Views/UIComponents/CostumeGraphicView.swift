@@ -11,13 +11,13 @@ struct CostumeGraphicView: View {
     @State var chairLightColor: Color
     @State var pedLightColor: Color
     @State var isChairRainbow: Bool
-    //@State var cRainbowAnime: Int //0-cycle, 1-wave
+    @State var cRainbowAnime: Int //0-none, 1-wave, 2-cycle
     @State var isPedRainbow: Bool
-    //@State var pRainbowAnime: Int //0-cycle, 1-wave
+    @State var pRainbowAnime: Int //0-none, 1-wave, 2-cycle
     @State var txtDisplay: String
     @State var txtColor: Color
     @State var txtBgColor: Color
-    @State var txtScroll: Int //0-none, 1-Left, 2-Up
+    @State var txtScroll: Int //0-none, 1-Left
     @State var txtSpeed: Double //text scroll speed
     //@State var isPulsing: Bool //pulse 3 sec - is this necessary?
     
@@ -30,11 +30,28 @@ struct CostumeGraphicView: View {
             
             //If Rainbow is triggered, show rainbow layer
             if isChairRainbow == true {
-                LinearGradient(gradient: FastLEDHueGradient, startPoint: .leading, endPoint: .trailing)
-                    .mask(Image("chairIconLights"))
-                    .position(x: 200, y: 150)
+                switch cRainbowAnime {
+                case 0: //case of no animation
+                    Image("chairIconLights")
+                        .renderingMode(.template)
+                        .foregroundColor(chairLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbow()
+                case 1: //case of rainbow wave
+                    Image("chairIconLights")
+                        .renderingMode(.template)
+                        .foregroundColor(chairLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbowAnimation()
+                default:
+                    Image("chairIconLights")
+                        .renderingMode(.template)
+                        .foregroundColor(chairLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbow()
+                }
             }else{
-                //Else show the colored chair lights
+                //Else show the solid colored chair lights
                 Image("chairIconLights")
                     .renderingMode(.template)
                     .foregroundColor(chairLightColor)
@@ -45,10 +62,26 @@ struct CostumeGraphicView: View {
             
             //If Rainbow is triggered, show this layer
             if isPedRainbow == true{
-                LinearGradient(gradient: FastLEDHueGradient, startPoint: .bottom, endPoint: .top)
-                    .frame(width:300,height:300)
-                    .mask(Image("PedestalLights"))
-                    .position(x: 200, y: 150)
+                switch pRainbowAnime {
+                case 0: //case of no animation
+                    Image("PedestalLights")
+                        .renderingMode(.template)
+                        .foregroundColor(pedLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbow()
+                case 1: //case of rainbow wave
+                    Image("PedestalLights")
+                        .renderingMode(.template)
+                        .foregroundColor(pedLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbowAnimation()
+                default:
+                    Image("PedestalLights")
+                        .renderingMode(.template)
+                        .foregroundColor(pedLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbow()
+                }
             }else{
                 //Else show the colord pedestal lights
                 Image("PedestalLights")
@@ -92,8 +125,10 @@ struct CostumeGraphicView: View {
                 chairLightColor: .white,
                 pedLightColor: .white,
                 isChairRainbow: false,
+                cRainbowAnime: 0,
                 isPedRainbow: false,
-                txtDisplay: "MAGIC WHEELCHAIR",
+                pRainbowAnime: 1,
+                txtDisplay: "I WANT YOU",
                 txtColor: .white,
                 txtBgColor: .gray,
                 txtScroll: 0,
@@ -136,7 +171,7 @@ struct Marquee: View{
             
             //Continuous Text Animation
             //Adding Spacing for continuous scrolling text
-            (1...8).forEach { _ in
+            (1...50).forEach { _ in
                 text.append(" ")
             }
             //Stopping animiation exactly before the next text
@@ -172,5 +207,69 @@ struct Marquee: View{
         let size = (text as NSString).size(withAttributes: attributes)
         
         return size
+    }
+}
+//Rainbow ViewModifier
+struct Rainbow: ViewModifier {
+    let hueColors = stride(from: 0, to: 1, by: 0.01).map {
+        Color(hue: $0, saturation: 1, brightness: 1)
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .overlay(GeometryReader { (proxy: GeometryProxy) in
+                ZStack {
+                    LinearGradient(gradient: Gradient(colors: self.hueColors),
+                                   startPoint: .leading,
+                                   endPoint: .trailing)
+                        .frame(width: proxy.size.width)
+                }
+            })
+            .mask(content)
+    }
+}
+extension View {
+    func rainbow() -> some View {
+        self.modifier(Rainbow())
+    }
+}
+//Rainbow Animation View Modifier
+struct RainbowAnimation: ViewModifier {
+    @State var isOn: Bool = false
+    let hueColors = stride(from: 0, to: 1, by: 0.01).map {
+        Color(hue: $0, saturation: 1, brightness: 1)
+    }
+    // Animation
+    var duration: Double = 4
+    var animation: Animation {
+        Animation
+            .linear(duration: duration)
+            .repeatForever(autoreverses: false)
+    }
+
+    func body(content: Content) -> some View {
+    // Two gradient lengths for looping/repeating
+        let gradient = LinearGradient(gradient: Gradient(colors: hueColors+hueColors), startPoint: .leading, endPoint: .trailing)
+        return content.overlay(GeometryReader { proxy in
+            ZStack {
+                gradient
+    // Double width of gradient
+                    .frame(width: 2*proxy.size.width)
+    // Use a ternary operator to change the x offset from its initial position of half the masks width to the right to half the masks width to the left
+                    .offset(x: self.isOn ? -(proxy.size.width/2)-200 : (proxy.size.width/2)-200)
+            }
+        })
+        //Use the on appear method to change the isOn value to true using the animation made earlier
+        .onAppear {
+            withAnimation(self.animation) {
+                self.isOn = true
+            }
+        }
+        .mask(content)
+    }
+}
+extension View {
+    func rainbowAnimation() -> some View {
+        self.modifier(RainbowAnimation())
     }
 }

@@ -15,12 +15,14 @@ struct TextEffectsView: View {
                     chairLightColor: .white,
                     pedLightColor: .white,
                     isChairRainbow: false,
+                    cRainbowAnime: 1, //0-none, 1-wave, 2-cycle
                     isPedRainbow: false,
+                    pRainbowAnime: 1, //0-none, 1-wave, 2-cycle
                     txtDisplay: "MAGIC WHEELCHAIR",
                     txtColor: .white,
                     txtBgColor: .gray,
-                    txtScroll: 0,
-                    txtSpeed: 0.02)
+                    txtScroll: 0,//0-none, 1-scroll left
+                    txtSpeed: 0.02) //seconds
 
                 Form {
                     Section {

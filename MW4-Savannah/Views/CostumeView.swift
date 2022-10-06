@@ -63,12 +63,17 @@ struct CostumeView: View {
                 }
                 Spacer()
                 CostumeGraphicView(
-                    chairLightColor: .red,
+                    chairLightColor: .white,
                     pedLightColor: .white,
-                    isChairRainbow: true,
+                    isChairRainbow: false,
+                    cRainbowAnime: 1, //0-none, 1-wave, 2-cycle
                     isPedRainbow: false,
-                    txtDisplay: "I WANT YOU",
-                    txtColor: .red)
+                    pRainbowAnime: 1, //0-none, 1-wave, 2-cycle
+                    txtDisplay: "MAGIC WHEELCHAIR",
+                    txtColor: .white,
+                    txtBgColor: .gray,
+                    txtScroll: 0,
+                    txtSpeed: 0.02)
                 Spacer()
                 PreviewButtonView(action: {} )
                     .padding(.bottom)
