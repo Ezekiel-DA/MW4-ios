@@ -46,6 +46,19 @@ struct CostumeView: View {
     var body: some View {
         NavigationView {
             VStack {
+                CostumeGraphicView(
+                    chairLightColor: .white,
+                    pedLightColor: .white,
+                    isChairRainbow: false,
+                    cRainbowAnime: 0,
+                    isPedRainbow: false,
+                    pRainbowAnime: 0,
+                    txtDisplay: "I WANT YOU",
+                    txtColor: .white,
+                    txtBgColor: .gray,
+                    txtScroll: 0,
+                    txtSpeed: 0.02)
+                Spacer()
                 ForEach(NavigationTargets.allCases, id: \.rawValue) { item in
                     EffectsListItemView(
                         text: item.title,
@@ -62,18 +75,10 @@ struct CostumeView: View {
                         
                 }
                 Spacer()
-                CostumeGraphicView(
-                    chairLightColor: .white,
-                    pedLightColor: .white,
-                    isChairRainbow: false,
-                    cRainbowAnime: 1, //0-none, 1-wave, 2-cycle
-                    isPedRainbow: false,
-                    pRainbowAnime: 1, //0-none, 1-wave, 2-cycle
-                    txtDisplay: "MAGIC WHEELCHAIR",
-                    txtColor: .white,
-                    txtBgColor: .gray,
-                    txtScroll: 0,
-                    txtSpeed: 0.02)
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
                 Spacer()
                 PreviewButtonView(action: {} )
                     .padding(.bottom)

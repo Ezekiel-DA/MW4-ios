@@ -43,6 +43,12 @@ struct CostumeGraphicView: View {
                         .foregroundColor(chairLightColor)
                         .position(x: 200, y: 150)
                         .rainbowAnimation()
+                case 2: //case of rainbow wave
+                    Image("chairIconLights")
+                        .renderingMode(.template)
+                        .foregroundColor(chairLightColor)
+                        .position(x: 200, y: 150)
+                        .rainbowCycle()
                 default:
                     Image("chairIconLights")
                         .renderingMode(.template)
@@ -75,6 +81,11 @@ struct CostumeGraphicView: View {
                         .foregroundColor(pedLightColor)
                         .position(x: 200, y: 150)
                         .rainbowAnimation()
+                case 2:
+                    Image("PedestalLights")
+                        .renderingMode(.template)
+                        .position(x: 200, y: 150)
+                        .rainbowCycle()
                 default:
                     Image("PedestalLights")
                         .renderingMode(.template)
@@ -124,10 +135,10 @@ struct CostumeGraphicView: View {
             CostumeGraphicView(
                 chairLightColor: .white,
                 pedLightColor: .white,
-                isChairRainbow: false,
-                cRainbowAnime: 0,
-                isPedRainbow: false,
-                pRainbowAnime: 1,
+                isChairRainbow: true,
+                cRainbowAnime: 2,
+                isPedRainbow: true,
+                pRainbowAnime: 2,
                 txtDisplay: "I WANT YOU",
                 txtColor: .white,
                 txtBgColor: .gray,
@@ -220,9 +231,9 @@ struct Rainbow: ViewModifier {
             .overlay(GeometryReader { (proxy: GeometryProxy) in
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: self.hueColors),
-                                   startPoint: .leading,
-                                   endPoint: .trailing)
-                        .frame(width: proxy.size.width)
+                                   startPoint: .top,
+                                   endPoint: .bottom)
+                        .frame(height: (proxy.size.height))
                 }
             })
             .mask(content)
@@ -240,7 +251,7 @@ struct RainbowAnimation: ViewModifier {
         Color(hue: $0, saturation: 1, brightness: 1)
     }
     // Animation
-    var duration: Double = 4
+    var duration: Double = 8
     var animation: Animation {
         Animation
             .linear(duration: duration)
@@ -249,14 +260,14 @@ struct RainbowAnimation: ViewModifier {
 
     func body(content: Content) -> some View {
     // Two gradient lengths for looping/repeating
-        let gradient = LinearGradient(gradient: Gradient(colors: hueColors+hueColors), startPoint: .leading, endPoint: .trailing)
+        let gradient = LinearGradient(gradient: Gradient(colors: hueColors+hueColors), startPoint: .bottom, endPoint: .top)
         return content.overlay(GeometryReader { proxy in
             ZStack {
                 gradient
-    // Double width of gradient
-                    .frame(width: 2*proxy.size.width)
-    // Use a ternary operator to change the x offset from its initial position of half the masks width to the right to half the masks width to the left
-                    .offset(x: self.isOn ? -(proxy.size.width/2)-200 : (proxy.size.width/2)-200)
+    // Double height of gradient
+                    .frame(height: 2*proxy.size.height)
+    // Use a ternary operator to change the y offset from its initial position of half the masks height to the bottom to half the masks height to the top
+                    .offset(y: self.isOn ? -proxy.size.height : 0)
             }
         })
         //Use the on appear method to change the isOn value to true using the animation made earlier
@@ -271,5 +282,33 @@ struct RainbowAnimation: ViewModifier {
 extension View {
     func rainbowAnimation() -> some View {
         self.modifier(RainbowAnimation())
+    }
+}
+struct RainbowCycle: ViewModifier {
+    @State private var cycle = false
+    // Animation
+    var duration: Double = 2
+    var animation: Animation {
+        Animation
+            .linear(duration: duration)
+            .repeatForever(autoreverses: false)
+    }
+    func body(content: Content) -> some View {
+        return content.overlay(GeometryReader { proxy in
+            Image("gradientChunk")
+            .frame(height: 2*proxy.size.height)
+            .offset(y: self.cycle ? -proxy.size.height*6 : proxy.size.height*5)
+        })
+        .onAppear {
+            withAnimation(self.animation.speed(0.1)) {
+                self.cycle = true
+            }
+        }
+        .mask(content)
+    }
+}
+extension View {
+    func rainbowCycle() -> some View {
+        self.modifier(RainbowCycle())
     }
 }

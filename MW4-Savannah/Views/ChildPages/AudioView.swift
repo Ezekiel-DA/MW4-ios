@@ -14,10 +14,10 @@ struct AudioView: View {
                 chairLightColor: .white,
                 pedLightColor: .white,
                 isChairRainbow: false,
-                cRainbowAnime: 1, //0-none, 1-wave, 2-cycle
+                cRainbowAnime: 0,
                 isPedRainbow: false,
-                pRainbowAnime: 1, //0-none, 1-wave, 2-cycle
-                txtDisplay: "MAGIC WHEELCHAIR",
+                pRainbowAnime: 0,
+                txtDisplay: "I WANT YOU",
                 txtColor: .white,
                 txtBgColor: .gray,
                 txtScroll: 0,
