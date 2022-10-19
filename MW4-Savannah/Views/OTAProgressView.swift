@@ -11,7 +11,7 @@ struct OTAProgressView: View {
     @ObservedObject var costumeService: CostumeService
     
     var body: some View {
-        if costumeService.otaProgress != 0.0 {
+//        if costumeService.otaProgress != 0.0 {
             VStack {
                 Text("Progress: \(costumeService.otaProgress, specifier: "%.1f") %")
                     .padding(.bottom)
@@ -19,7 +19,7 @@ struct OTAProgressView: View {
                 Text("Transfer speed : \(costumeService.otaKBps, specifier: "%.1f") kB/s")
                 Text("Elapsed time   : \(costumeService.otaElapsed, specifier: "%.1f") s")
             }
-        }
+//        }
     }
 }
 

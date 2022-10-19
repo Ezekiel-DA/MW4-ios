@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TextEffectsView: View {
+    @ObservedObject var textDisplayService: TextDisplayService
+    
     var body: some View {
        
             VStack {
@@ -22,11 +24,11 @@ struct TextEffectsView: View {
                 Form {
                     Section {
                        
-                        TextChooserView(isButtonSection: false)
+                        TextChooserView(isButtonSection: false, textDisplayService: textDisplayService)
                     }
                     
                     Section {
-                        TextChooserView(isButtonSection: true)
+                        TextChooserView(isButtonSection: true, textDisplayService: textDisplayService)
                     }
                 }
                 //BottomNavigationButtons().padding()
@@ -40,7 +42,7 @@ struct TextEffectsView: View {
 
 struct TextEffectsView_Previews: PreviewProvider {
     static var previews: some View {
-        TextEffectsView()
+        TextEffectsView(textDisplayService: TextDisplayServiceMock(text: "TEAM SAVANNAH", scrolling: 1))
             .previewInterfaceOrientation(.portrait)
     }
 }

@@ -16,8 +16,7 @@ struct MW4_SavannahApp: App {
     
     var body: some Scene {
         WindowGroup {
-            //ContentView(costumeManager: costumeMgr)
-            CostumeView()
+            CostumeView(costumeManager: costumeMgr)
         }
     }
 }

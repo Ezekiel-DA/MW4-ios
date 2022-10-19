@@ -31,57 +31,88 @@ enum NavigationTargets: Int, CaseIterable {
         }
     }
     
-    @ViewBuilder
-    var view: some View {
+    @MainActor @ViewBuilder
+    func getView(_ costumeManager: CostumeManager) -> some View {
         switch self {
         case .ChairLights: ChairLightsView()
         case .PedestalLights: PedestalLightsView()
-        case .Text: TextEffectsView()
+        case .Text: TextEffectsView(textDisplayService: costumeManager.frontTextService)
         case .Audio: AudioView()
         }
     }
 }
 
 struct CostumeView: View {
+    @ObservedObject var costumeManager: CostumeManager
+
+    @State private var isOTASheetShowing = false
+    
     var body: some View {
         NavigationView {
             VStack {
-                ForEach(NavigationTargets.allCases, id: \.rawValue) { item in
-                    EffectsListItemView(
-                        text: item.title,
-                        effectDescriptionText: item.effectDescription,
-                        editDestination: AnyView(item.view
-                            .navigationTitle(item.title)
-                            .navigationBarTitleDisplayMode(.inline)
-                            .toolbar{
-                                Button("Reset") {}
-                            }
-
+                if (costumeManager.connected) {
+                    ForEach(NavigationTargets.allCases, id: \.rawValue) { item in
+                        EffectsListItemView(
+                            text: item.title,
+                            effectDescriptionText: item.effectDescription,
+                            editDestination: AnyView(item.getView(costumeManager)
+                                .navigationTitle(item.title)
+                                .navigationBarTitleDisplayMode(.inline)
+                                .toolbar{
+                                    Button("Reset") {}
+                                }
+                            )
                         )
-                    )
-                        
+                    }
+                    Spacer()
+                    CostumeGraphicView(
+                        chairLightColor: .red,
+                        pedLightColor: .white,
+                        isChairRainbow: true,
+                        isPedRainbow: false,
+                        txtDisplay: "I WANT YOU",
+                        txtColor: .red)
+                    Spacer()
+                    PreviewButtonView(action: {} )
+                        .padding(.bottom)
+                } else {
+                    Text(costumeManager.bluetoothOff ? "Please turn Bluetooth on in Settings." : (costumeManager.bluetoothUnavailable ? "Please allow \(Bundle.main.displayName) access to      Bluetooth" : "Please turn on costume") )
                 }
-                Spacer()
-                CostumeGraphicView(
-                    chairLightColor: .red,
-                    pedLightColor: .white,
-                    isChairRainbow: true,
-                    isPedRainbow: false,
-                    txtDisplay: "I WANT YOU",
-                    txtColor: .red)
-                Spacer()
-                PreviewButtonView(action: {} )
-                    .padding(.bottom)
             }
-            .navigationBarTitle("THE CHOICE")
+            .navigationBarTitle("TEAM SAVANNAH")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitleFontStyle(.title1)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if (costumeManager.updateAvailable) {
+                        Button("update") {
+                            isOTASheetShowing.toggle()
+                            // TODO: we probably need to prevent users from starting the update process multiple times?
+                            Task {
+                                let fw = try await fetchFirmwareFile(costumeManager.updatedFWURL)
+                                UIApplication.shared.isIdleTimerDisabled = true
+                                await costumeManager.costumeService.sendFWUpdate(fw)
+                                UIApplication.shared.isIdleTimerDisabled = false
+                                print("done")
+                            }
+                        }
+                        .frame(width: 50.0)
+                        .sheet(isPresented: $isOTASheetShowing) {
+                            OTAProgressView(costumeService: costumeManager.costumeService)
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
 struct CostumeView_Previews: PreviewProvider {
     static var previews: some View {
-        CostumeView()
+        Group {
+            CostumeView(costumeManager: CostumeManagerMock(connected: true, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 3))
+            CostumeView(costumeManager: CostumeManagerMock(connected: true, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 1))
+            CostumeView(costumeManager: CostumeManagerMock(connected: false, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 0))
+        }
     }
 }

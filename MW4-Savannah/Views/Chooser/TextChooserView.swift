@@ -35,8 +35,9 @@ enum ScrollingModes: Int, CaseIterable {
 struct TextChooserView: View {
     let isButtonSection: Bool
     @State private var isOn: Bool = true
-    @State private var text: String = "I WANT YOU"
     @State private var picked: Int = 0
+    
+    @ObservedObject var textDisplayService: TextDisplayService
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -69,18 +70,21 @@ struct TextChooserView: View {
                 }
                 
                 Text("Text")
-                TextField("I WANT YOU", text: $text)
+                TextField("I WANT YOU", text: Binding($textDisplayService.text)!)
                     .frame(alignment: .leading)
                     .padding(4)
                     .border(.black)
                 Text("Scrolling")
                 
-                Picker(selection: $picked, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
+                Picker(selection: Binding($textDisplayService.scrolling)!, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
                     ForEach(ScrollingModes.allCases, id: \.rawValue) { item in
-                            //Text(item.title).tag(item.rawValue)
-                        Image(systemName: item.graphics).tag(item.rawValue)
+                        Image(systemName: item.graphics).tag(UInt8(item.rawValue))
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+//                .onChange(of: picked) { newValue in
+//                    print(newValue)
+//                    textDisplayService.scrolling = UInt8(newValue)
+//                }
             }
       
         
@@ -90,6 +94,6 @@ struct TextChooserView: View {
 
 struct TextChooserView_Previews: PreviewProvider {
     static var previews: some View {
-        TextChooserView(isButtonSection: true)
+        TextChooserView(isButtonSection: true, textDisplayService: TextDisplayServiceMock(text: "Hello world", scrolling: 1))
     }
 }

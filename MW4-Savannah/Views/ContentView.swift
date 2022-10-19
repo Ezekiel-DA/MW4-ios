@@ -15,7 +15,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            if (costumeManager.device != nil) {
+            if (costumeManager.connected) {
                 VStack {
                     TextDisplayView(textDisplayService: costumeManager.frontTextService)
                     Button("Check for update") {
