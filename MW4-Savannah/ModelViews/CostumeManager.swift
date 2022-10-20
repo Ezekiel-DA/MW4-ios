@@ -17,6 +17,7 @@ let centralManager = CentralManager()
     @Published var connected = false
     @Published var costumeService = CostumeService()
     @Published var frontTextService = TextDisplayService()
+    @Published var pedestalLightsService = LightDeviceService()
     @Published var bluetoothUnavailable = false
     @Published var bluetoothOff = false
     
@@ -112,6 +113,7 @@ let centralManager = CentralManager()
         
         await costumeService.setDevice(peripheral!)
         await frontTextService.setDevice(peripheral!)
+        await pedestalLightsService.setDevice(peripheral!)
     }
 }
 

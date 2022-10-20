@@ -35,7 +35,7 @@ enum NavigationTargets: Int, CaseIterable {
     func getView(_ costumeManager: CostumeManager) -> some View {
         switch self {
         case .ChairLights: ChairLightsView()
-        case .PedestalLights: PedestalLightsView()
+        case .PedestalLights: PedestalLightsView(lightDeviceService: costumeManager.pedestalLightsService)
         case .Text: TextEffectsView(textDisplayService: costumeManager.frontTextService)
         case .Audio: AudioView()
         }
@@ -86,14 +86,14 @@ struct CostumeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if (costumeManager.updateAvailable) {
                         Button("update") {
-                            isOTASheetShowing.toggle()
+                            isOTASheetShowing = true
                             // TODO: we probably need to prevent users from starting the update process multiple times?
                             Task {
                                 let fw = try await fetchFirmwareFile(costumeManager.updatedFWURL)
                                 UIApplication.shared.isIdleTimerDisabled = true
                                 await costumeManager.costumeService.sendFWUpdate(fw)
                                 UIApplication.shared.isIdleTimerDisabled = false
-                                print("done")
+                                isOTASheetShowing = false
                             }
                         }
                         .frame(width: 50.0)

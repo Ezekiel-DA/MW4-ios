@@ -93,8 +93,8 @@
             filePath = "MW4-Savannah/Models/TextDisplayService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "init()"
             landmarkType = "7">
             <Locations>
@@ -157,6 +157,132 @@
                   startingLineNumber = "64"
                   endingLineNumber = "64"
                   offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "305F083A-A1C7-40BD-A3F6-A59541802A93"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MW4-Savannah/Models/LightControlService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "setDevice(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F812A33-335A-4B84-8110-7F4736F7A92E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MW4-Savannah/Models/LightControlService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "setDevice(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2561CE6E-D29E-41C2-B5B3-6AB2D5315B23"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MW4-Savannah/Models/LightControlService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "setDevice(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2F54DB3-F34A-49C0-99DD-AF7158B3BF5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MW4-Savannah/Models/LightDeviceService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B2F54DB3-F34A-49C0-99DD-AF7158B3BF5D - 7ebfdf35bfdfa2ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;Swift.UInt8&gt;) -&gt; () in Team_Savannah.LightDeviceService.init() -&gt; Team_Savannah.LightDeviceService"
+                  moduleName = "Team Savannah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/Models/LightDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "B2F54DB3-F34A-49C0-99DD-AF7158B3BF5D - 797a5bec1dcd0b84"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;Swift.UInt8&gt;) -&gt; () in Team_Savannah.LightDeviceService.init() -&gt; Team_Savannah.LightDeviceService"
+                  moduleName = "Team Savannah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/Models/LightDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "B2F54DB3-F34A-49C0-99DD-AF7158B3BF5D - 7d30992f208fea8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;Swift.UInt8&gt;) -&gt; () in Team_Savannah.LightDeviceService.init() -&gt; Team_Savannah.LightDeviceService"
+                  moduleName = "Team Savannah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/Models/LightDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "B2F54DB3-F34A-49C0-99DD-AF7158B3BF5D - 881633f976d98ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;Swift.UInt8&gt;) -&gt; () in Team_Savannah.LightDeviceService.init() -&gt; Team_Savannah.LightDeviceService"
+                  moduleName = "Team Savannah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicol/Documents/MW4-Savannah/MW4-Savannah/Models/LightDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "104">
                </Location>
             </Locations>
          </BreakpointContent>

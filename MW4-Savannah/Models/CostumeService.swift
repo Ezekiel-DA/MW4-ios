@@ -31,9 +31,7 @@ let OTA_CONTROL_ERR   = 0xFF
     @Published var otaKBps = 0.0
     
     internal var device: Peripheral?
-    
-    private var valueUpdateSubscription: AnyCancellable?
-        
+            
     func setDevice(_ peripheral: Peripheral) async {
         device = peripheral
         let res = await getFWVersion(device!)
@@ -49,57 +47,57 @@ let OTA_CONTROL_ERR   = 0xFF
         
         do {
             try await device.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_COSTUME_CONTROL_OTA_CONTROL_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MWNEXT_BLE_COSTUME_CONTROL_SERVICE_UUID)!)
-            valueUpdateSubscription = device.characteristicValueUpdatedPublisher.sink(
-                receiveValue: { value in
-                    Task {
-                        // check that we received an ACK to our START
-                        let val = value.value![0]
-                        guard (val == OTA_CONTROL_ACK) else {
-                            print("TODO: HANDLE OTA FAILURE; device did not respond to OTA_CONTROL_START with OTA_CONTROL_ACK")
-                            return
-                        }
-                        
-                        // reset CTRL to NOP
-                        try await sendOTAControlMessage(OTA_CONTROL_NOP, device: device)
-                        
-                        // chunk and send OTA update
-                        let msgSize = device.maximumWriteValueLength(for: .withResponse)
-                        var range: Range<Data.Index>
-                        var remaining = true
-                        var sentBytes = 0
-                        let startTime = CFAbsoluteTimeGetCurrent()
-                                                
-                        while remaining {
-                            range = (0..<min(msgSize, dataToSend.count))
-                            
-                            let chunk = dataToSend.subdata(in: range)
-                            
-                            if !dataToSend.isEmpty {
-                                try await sendOTAData(chunk, device: device)
-                            } else {
-                                remaining = false
-                            }
-                            
-                            dataToSend.removeSubrange(range)
-                            
-                            self.otaProgress = (1 - (Double(dataToSend.count) / Double(fw.count))) * 100
-                            sentBytes = sentBytes + msgSize
-                            self.otaElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                            let rate = Double(sentBytes) / self.otaElapsed
-                            self.otaKBps = rate / 1000
-                        }
-                        
-                        // notify END of OTA
-                        try await sendOTAControlMessage(OTA_CONTROL_END, device: device)
-                        
-                        self.valueUpdateSubscription!.cancel()
+            
+            Task {  // Start OTA in a task so we can await the Publisher immediately, instead of being stuck waiting for the response until it's too late
+                    // NB: doing a write .withoutResponse for the start message might work as well and make more sense? But AsyncBluetooth doesn't seem to expose this
+                try await sendOTAControlMessage(OTA_CONTROL_START, device: device)
+            }
+            
+            // convert Publisher to async sequence and wait for 1st element in sequence, which should be an ACK for the above start
+            for try await val in device.characteristicValueUpdatedPublisher.values {
+                let msg = val.value![0]
+                guard (msg == OTA_CONTROL_ACK) else {
+                    print("TODO: HANDLE OTA FAILURE; device did not respond to OTA_CONTROL_START with OTA_CONTROL_ACK")
+                    return
+                }
+                
+                // reset CTRL to NOP
+                try await sendOTAControlMessage(OTA_CONTROL_NOP, device: device)
+                
+                // chunk and send OTA update
+                let msgSize = device.maximumWriteValueLength(for: .withResponse)
+                var range: Range<Data.Index>
+                var remaining = true
+                var sentBytes = 0
+                let startTime = CFAbsoluteTimeGetCurrent()
+                                        
+                while remaining {
+                    range = (0..<min(msgSize, dataToSend.count))
+                    
+                    let chunk = dataToSend.subdata(in: range)
+                    
+                    if !dataToSend.isEmpty {
+                        try await sendOTAData(chunk, device: device)
+                    } else {
+                        remaining = false
                     }
                     
+                    dataToSend.removeSubrange(range)
+                    
+                    self.otaProgress = (1 - (Double(dataToSend.count) / Double(fw.count))) * 100
+                    sentBytes = sentBytes + msgSize
+                    self.otaElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                    let rate = Double(sentBytes) / self.otaElapsed
+                    self.otaKBps = rate / 1000
                 }
-            )
-
-            // Send START of OTA; we'll wait for the ACK via the callback above
-            try await sendOTAControlMessage(OTA_CONTROL_START, device: device)
+                
+                // notify END of OTA
+                Task {
+                    try await sendOTAControlMessage(OTA_CONTROL_END, device: device)
+                }
+                
+                return // return without waiting for the OTA_END message to complete; it might not, since the ESP will restart
+            }
         } catch {
             print("ERROR IN OTA UPLOAD")
             return

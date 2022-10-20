@@ -26,6 +26,8 @@ enum LightModes: Int, CaseIterable {
 }
 
 struct LightStripEffectChooserView: View {
+    @ObservedObject var device: LightDeviceService
+    
     let isButtonSection: Bool
     @State private var isOn: Bool = true
     @State private var picked: Int = 0
@@ -58,7 +60,7 @@ struct LightStripEffectChooserView: View {
                 Divider()
                 
                 if (picked == 3){
-                    HColorPickerView(label: "Color")
+                    HColorPickerView(hue: $device.hue, label: "Color")
                     
                 }
             }
@@ -72,11 +74,11 @@ struct LightStripEffectChooserView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            LightStripEffectChooserView(isButtonSection: false)
+            LightStripEffectChooserView(device: LightDeviceService(), isButtonSection: false)
             Spacer()
             Divider()
             Spacer()
-            LightStripEffectChooserView(isButtonSection: true)
+            LightStripEffectChooserView(device: LightDeviceService(), isButtonSection: true)
             Spacer()
         }
     }

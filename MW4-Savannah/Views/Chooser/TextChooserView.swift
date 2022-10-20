@@ -64,10 +64,10 @@ struct TextChooserView: View {
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 
-                if (picked == 3){
-                    HColorPickerView(label: "Color")
-
-                }
+//                if (picked == 3){
+//                    HColorPickerView(hue: $textDisplayService.hue,label: "Color")
+//
+//                }
                 
                 Text("Text")
                 TextField("I WANT YOU", text: Binding($textDisplayService.text)!)

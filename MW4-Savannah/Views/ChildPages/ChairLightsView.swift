@@ -24,13 +24,13 @@ struct ChairLightsView: View {
             Form {
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(isButtonSection: false)
+//                        LightStripEffectChooserView(isButtonSection: false)
                     }
                 }
                 
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(isButtonSection: true)
+//                        LightStripEffectChooserView(isButtonSection: true)
                     }
                 }
             }

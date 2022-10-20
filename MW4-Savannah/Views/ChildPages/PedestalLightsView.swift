@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PedestalLightsView: View {
+    @ObservedObject var lightDeviceService: LightDeviceService
+    
     var body: some View {
         VStack {
             CostumeGraphicView(
@@ -23,13 +25,13 @@ struct PedestalLightsView: View {
             Form {
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(isButtonSection: false)
+                        LightStripEffectChooserView(device: lightDeviceService, isButtonSection: false)
                     }
                 }
                 
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(isButtonSection: true)
+                        LightStripEffectChooserView(device: lightDeviceService, isButtonSection: true)
                     }
                 }
             }
@@ -42,6 +44,6 @@ struct PedestalLightsView: View {
 
 struct PedestalLightsView_Previews: PreviewProvider {
     static var previews: some View {
-        PedestalLightsView()
+        PedestalLightsView(lightDeviceService: LightDeviceService())
     }
 }
