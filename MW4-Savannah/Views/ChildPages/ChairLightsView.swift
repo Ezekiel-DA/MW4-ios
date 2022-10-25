@@ -18,7 +18,7 @@ struct ChairLightsView: View {
                 chairLightColor: .white,
                 isChairRainbow: false,
                 isPedRainbow: false,
-                txtDisplay: "I WANT YOU",
+                txtDisplay: Binding($costumeManager.frontTextService.text)!,
                 txtColor: .white)
             
             Form {

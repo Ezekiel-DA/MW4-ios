@@ -14,7 +14,8 @@ struct CostumeGraphicView: View {
     @State var chairLightColor: Color
     @State var isChairRainbow: Bool
     @State var isPedRainbow: Bool
-    @State var txtDisplay: String
+//    @State var txtDisplay: String
+    @Binding var txtDisplay: String
     @State var txtColor: Color
     
     var body: some View {
@@ -74,7 +75,7 @@ struct CostumeGraphicView_Previews: PreviewProvider {
             chairLightColor: .green,
             isChairRainbow: false,
             isPedRainbow: false,
-            txtDisplay: "HAPPY BIRTHDAY",
+            txtDisplay: Binding.constant("HAPPY BIRTHDAY"),
             txtColor: .blue)
     }
 }

@@ -10,13 +10,13 @@ import SwiftUI
 enum ScrollingModes: Int, CaseIterable {
     case None
     case Left
-    case Up
+//    case Up
     
     var title: String {
         switch self {
         case .None: return "None"
         case .Left: return "Left"
-        case .Up: return "Up"
+//        case .Up: return "Up"
         }
     }
     
@@ -26,8 +26,8 @@ enum ScrollingModes: Int, CaseIterable {
             return "nosign"
         case .Left:
             return "arrow.left"
-        case .Up:
-            return "arrow.up"
+//        case .Up:
+//            return "arrow.up"
         }
     }
 }
@@ -42,31 +42,26 @@ struct TextChooserView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if (isButtonSection) {
-                Toggle(isOn: $isOn) { Text("Button Trigger").fontWeight(.heavy) }
-                Text("Display desired text for 3s")
-                    .padding(.bottom)
+                HStack {
+                    Text("On button press:").fontWeight(.heavy)
+                    Text("for 60 seconds").font(/*@START_MENU_TOKEN@*/.subheadline/*@END_MENU_TOKEN@*/).fontWeight(.light)
+                }
             }
-            else{
-                Text("Default Status").fontWeight(.heavy)
-            }
+            
             //Only show additional UI if the toggle is On
             if (isOn){
                 Text("Color")
                 Picker(selection: $picked, label: Text("Or")) {
-                    ForEach(LightModes.allCases, id: \.rawValue) { item in
+                    ForEach(ColorModes.allCases, id: \.rawValue) { item in
                         VStack{
 
                             Text(item.title).tag(item.rawValue)
                         }
-                           
-                        
-                       
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 
-//                if (picked == 3){
+//                if (picked == 2){
 //                    HColorPickerView(hue: $textDisplayService.hue,label: "Color")
-//
 //                }
                 
                 Text("Text")
@@ -81,13 +76,7 @@ struct TextChooserView: View {
                         Image(systemName: item.graphics).tag(UInt8(item.rawValue))
                     }
                 }.pickerStyle(SegmentedPickerStyle())
-//                .onChange(of: picked) { newValue in
-//                    print(newValue)
-//                    textDisplayService.scrolling = UInt8(newValue)
-//                }
             }
-      
-        
         }
     }
 }

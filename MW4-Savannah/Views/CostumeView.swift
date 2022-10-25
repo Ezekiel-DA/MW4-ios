@@ -11,14 +11,14 @@ enum NavigationTargets: Int, CaseIterable {
     case ChairLights
     case PedestalLights
     case Text
-    case Audio
+//    case Audio
     
     var title: String {
         switch self {
         case .ChairLights: return "Chair lights"
         case .PedestalLights: return "Pedestal lights"
         case .Text: return "Text effects"
-        case .Audio: return "Audio"
+//        case .Audio: return "Audio"
         }
     }
     
@@ -27,7 +27,7 @@ enum NavigationTargets: Int, CaseIterable {
         case .ChairLights: return "Red"
         case .PedestalLights: return "White, Pulsing"
         case .Text: return "ON"
-        case .Audio: return "OFF"
+//        case .Audio: return "OFF"
         }
     }
     
@@ -36,8 +36,8 @@ enum NavigationTargets: Int, CaseIterable {
         switch self {
         case .ChairLights: ChairLightsView(costumeManager: costumeManager)
         case .PedestalLights: PedestalLightsView(costumeManager: costumeManager)
-        case .Text: TextEffectsView(textDisplayService: costumeManager.frontTextService)
-        case .Audio: AudioView()
+        case .Text: TextEffectsView(costumeManager: costumeManager)
+//        case .Audio: AudioView()
         }
     }
 }
@@ -71,7 +71,7 @@ struct CostumeView: View {
                         chairLightColor: .red,
                         isChairRainbow: false,
                         isPedRainbow: false,
-                        txtDisplay: "I WANT YOU",
+                        txtDisplay: Binding($costumeManager.frontTextService.text)!,
                         txtColor: .red)
                     Spacer()
                     PreviewButtonView(action: {} )
