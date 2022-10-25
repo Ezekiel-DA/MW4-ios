@@ -25,6 +25,18 @@ let MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID                          = "d69b013f-949
 let MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID                   = "e27a37e8-fd5e-47f3-bff2-b07a357cb8e4"
 let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347b-46b9-ba39-3a2c7dfd51a2"
 
+let ALL_LIGHT_DATA_CHARACTERISTICS = [
+    CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID),
+    CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID),
+    CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID),
+    CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID),
+    
+    CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID),
+    CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID),
+    CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID),
+    CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID),
+]
+
 @MainActor class LightDeviceService: ObservableObject {
     @Published var id: UInt8?
     @Published var state: Bool?
@@ -37,21 +49,22 @@ let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347
     @Published var saturationAlt: UInt8?
     @Published var value: UInt8?
     @Published var valueAlt: UInt8?
-    
+        
     internal var device: Peripheral?
+    internal var service: Service?
     
     private var valueUpdateSubscription: AnyCancellable?
     
     private var appSideUpdates: Set<AnyCancellable> = []
     
     init() {
-        $hue.sink { val in
+        $hue.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true)
+            .sink { val in
             Task {
                 guard let device = self.device else {
                     return
                 }
-                
-                try await device.writeValue(self.hue ?? 0, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_HUE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
+                try await device.writeValue((self.hue ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID) })!, type: .withResponse)
             }
         }.store(in: &appSideUpdates)
         
@@ -60,8 +73,7 @@ let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347
                 guard let device = self.device else {
                     return
                 }
-                
-                try await device.writeValue(self.saturation ?? 0, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_SATURATION_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
+                try await device.writeValue((self.saturation ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID) })!, type: .withResponse)
             }
         }.store(in: &appSideUpdates)
         
@@ -70,8 +82,7 @@ let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347
                 guard let device = self.device else {
                     return
                 }
-                
-                try await device.writeValue(self.value ?? 0, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_VALUE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
+                try await device.writeValue((self.value ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID) })!, type: .withResponse)
             }
         }.store(in: &appSideUpdates)
         
@@ -80,35 +91,77 @@ let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347
                 guard let device = self.device else {
                     return
                 }
-                
-                try await device.writeValue(self.mode ?? 0, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_MODE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
+                try await device.writeValue((self.mode ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID) })!, type: .withResponse)
+            }
+        }.store(in: &appSideUpdates)
+        
+        
+        $hueAlt.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true)
+            .sink { val in
+            Task {
+                guard let device = self.device else {
+                    return
+                }
+                try await device.writeValue((self.hueAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
+            }
+        }.store(in: &appSideUpdates)
+        
+        $saturationAlt.sink { val in
+            Task {
+                guard let device = self.device else {
+                    return
+                }
+                try await device.writeValue((self.saturationAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
+            }
+        }.store(in: &appSideUpdates)
+        
+        $valueAlt.sink { val in
+            Task {
+                guard let device = self.device else {
+                    return
+                }
+                try await device.writeValue((self.valueAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
+            }
+        }.store(in: &appSideUpdates)
+        
+        $modeAlt.sink { val in
+            Task {
+                guard let device = self.device else {
+                    return
+                }
+                try await device.writeValue((self.modeAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
             }
         }.store(in: &appSideUpdates)
     }
     
-    func setDevice(_ peripheral: Peripheral) async {
+    func setDevice(_ peripheral: Peripheral, service uniqueService: Service) async {
         device = peripheral
+        service = uniqueService
         
-//        for service in device!.discoveredServices ?? [] {
-//            for characteristic in service.discoveredCharacteristics ?? [] {
-//                if (characteristic.uuid == CBUUID(string: MW4_BLE_ID_CHARACTERISTIC_UUID)) {
-//                    print("FOUND")
-//                    print(characteristic)
-//                }
-//            }
-//        }
-                
         do {
-            hue = try await device!.readValue(forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_HUE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-            saturation = try await device!.readValue(forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_SATURATION_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-            value = try await device!.readValue(forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_VALUE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-            mode = try await device!.readValue(forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_MODE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
+            try await device!.discoverCharacteristics(ALL_LIGHT_DATA_CHARACTERISTICS, for: service!)
             
-            try await device!.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_HUE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-            try await device!.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_SATURATION_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-            try await device!.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_VALUE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-            try await device!.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_MODE_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)!)
-                        
+            for characteristic in service!.discoveredCharacteristics ?? [] {
+                try await device!.readValue(for: characteristic)
+            }
+            
+            for characteristic in ALL_LIGHT_DATA_CHARACTERISTICS {
+                try await device!.setNotifyValue(true, for: service!.discoveredCharacteristics!.first(where: { $0.uuid == characteristic })!)
+            }
+            
+            hue = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID)})?.parsedValue()
+            saturation = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID)})?.parsedValue()
+            value = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID)})?.parsedValue()
+            mode = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID)})?.parsedValue()
+            
+            hueAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
+            saturationAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
+            valueAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
+            modeAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
+            
+            print("mode: ", mode!)
+            print("mode (alt): ", modeAlt!)
+                                    
             valueUpdateSubscription = device!.characteristicValueUpdatedPublisher.sink(
                 receiveValue: { value in
                     Task {
@@ -125,6 +178,18 @@ let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347
                         case CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID):
                             self.mode = value.value![0]
                             break
+                        case CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID):
+                            self.hueAlt = value.value![0]
+                            break
+                        case CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID):
+                            self.saturationAlt = value.value![0]
+                            break
+                        case CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID):
+                            self.valueAlt = value.value![0]
+                            break
+                        case CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID):
+                            self.modeAlt = value.value![0]
+                            break
                         default:
                             break
                         }
@@ -138,10 +203,17 @@ let MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID                        = "52f49348-347
     }
 }
 
-//class LightControlServiceMock: LightControlService {
-//    init(text dummyText: String, scrolling isScrolling: UInt8) {
-//        super.init()
-//        text = dummyText
-//        scrolling = isScrolling
-//    }
-//}
+class LightDeviceServiceMock: LightDeviceService {
+    init(hue: UInt8, saturation: UInt8, value: UInt8) {
+        super.init()
+        super.hue = hue
+        super.saturation = saturation
+        super.value = value
+        super.mode = 1
+        
+        super.hueAlt = 255
+        super.saturationAlt = 0
+        super.value = 255
+        super.mode = 0
+    }
+}

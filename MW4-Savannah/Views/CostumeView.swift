@@ -34,8 +34,8 @@ enum NavigationTargets: Int, CaseIterable {
     @MainActor @ViewBuilder
     func getView(_ costumeManager: CostumeManager) -> some View {
         switch self {
-        case .ChairLights: ChairLightsView()
-        case .PedestalLights: PedestalLightsView(lightDeviceService: costumeManager.pedestalLightsService)
+        case .ChairLights: ChairLightsView(costumeManager: costumeManager)
+        case .PedestalLights: PedestalLightsView(costumeManager: costumeManager)
         case .Text: TextEffectsView(textDisplayService: costumeManager.frontTextService)
         case .Audio: AudioView()
         }
@@ -66,9 +66,10 @@ struct CostumeView: View {
                     }
                     Spacer()
                     CostumeGraphicView(
+                        chairLightsManager: costumeManager.chairLightsService,
+                        pedestalLightsManager: costumeManager.pedestalLightsService,
                         chairLightColor: .red,
-                        pedLightColor: .white,
-                        isChairRainbow: true,
+                        isChairRainbow: false,
                         isPedRainbow: false,
                         txtDisplay: "I WANT YOU",
                         txtColor: .red)
@@ -76,7 +77,12 @@ struct CostumeView: View {
                     PreviewButtonView(action: {} )
                         .padding(.bottom)
                 } else {
-                    Text(costumeManager.bluetoothOff ? "Please turn Bluetooth on in Settings." : (costumeManager.bluetoothUnavailable ? "Please allow \(Bundle.main.displayName) access to      Bluetooth" : "Please turn on costume") )
+                    Text(costumeManager.bluetoothOff ?
+                         "Please turn Bluetooth on in Settings."
+                         : costumeManager.bluetoothUnavailable ?
+                            "Please allow \(Bundle.main.displayName) access to Bluetooth"
+                            : costumeManager.found ? "Costume found, connecting..." : "Please turn on costume"
+                   )
                 }
             }
             .navigationBarTitle("TEAM SAVANNAH")

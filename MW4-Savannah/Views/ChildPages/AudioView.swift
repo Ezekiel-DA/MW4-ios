@@ -10,14 +10,15 @@ import SwiftUI
 struct AudioView: View {
     var body: some View {
         VStack {
-            CostumeGraphicView(
-                chairLightColor: .white,
-                pedLightColor: .white,
-                isChairRainbow: false,
-                isPedRainbow: false,
-                txtDisplay: "I WANT YOU",
-                txtColor: .white)
-            .frame(height:300)
+//            CostumeGraphicView(
+//                costumeManager: // TODO
+//                chairLightColor: .white,
+//                pedLightColor: .white,
+//                isChairRainbow: false,
+//                isPedRainbow: false,
+//                txtDisplay: "I WANT YOU",
+//                txtColor: .white)
+//            .frame(height:300)
            
             Form {
 

@@ -18,8 +18,8 @@ struct EffectsListItemView: View {
             Text(text)
                 .fontWeight(.bold)
             Spacer()
-            Text("[\(effectDescriptionText)]")
-                .fontWeight(.light)
+//            Text("[\(effectDescriptionText)]")
+//                .fontWeight(.light)
             ZStack {
                 Circle().frame(width: 24, height: 24).foregroundColor(Color(.systemCyan)).opacity(0.2)
                 NavigationLink(destination: editDestination, label: {

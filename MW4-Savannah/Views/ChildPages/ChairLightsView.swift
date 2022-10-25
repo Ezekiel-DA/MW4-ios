@@ -8,47 +8,38 @@
 import SwiftUI
 
 struct ChairLightsView: View {
+    @ObservedObject var costumeManager: CostumeManager
     
     var body: some View {
         VStack {
             CostumeGraphicView(
+                chairLightsManager: costumeManager.chairLightsService,
+                pedestalLightsManager: costumeManager.pedestalLightsService,
                 chairLightColor: .white,
-                pedLightColor: .white,
                 isChairRainbow: false,
                 isPedRainbow: false,
                 txtDisplay: "I WANT YOU",
                 txtColor: .white)
             
-            Spacer()
-            
             Form {
                 Section {
                     VStack(alignment: .leading) {
-//                        LightStripEffectChooserView(isButtonSection: false)
+                        LightStripEffectChooserView(device: costumeManager.chairLightsService, isButtonSection: false)
                     }
                 }
                 
                 Section {
                     VStack(alignment: .leading) {
-//                        LightStripEffectChooserView(isButtonSection: true)
+                        LightStripEffectChooserView(device: costumeManager.chairLightsService, isButtonSection: true)
                     }
                 }
             }
-            
-           // BottomNavigationButtons().padding()
-      
         }
     }
 }
 
 struct ChairLightsView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone 7 Plus", "iPhone Xs"], id: \.self) { deviceName in
-            ChairLightsView()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
-        }
+        ChairLightsView(costumeManager: CostumeManagerMock(connected: true, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 2))
     }
 }
-
-

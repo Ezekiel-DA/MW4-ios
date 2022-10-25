@@ -15,8 +15,10 @@ let centralManager = CentralManager()
 
 @MainActor class CostumeManager: ObservableObject {
     @Published var connected = false
+    @Published var found = false
     @Published var costumeService = CostumeService()
     @Published var frontTextService = TextDisplayService()
+    @Published var chairLightsService = LightDeviceService()
     @Published var pedestalLightsService = LightDeviceService()
     @Published var bluetoothUnavailable = false
     @Published var bluetoothOff = false
@@ -46,6 +48,10 @@ let centralManager = CentralManager()
                         await self.clearDevice()
                         try await self.findBLEDevice()
                     }
+                case .willRestoreState(state: _):
+                    break // TODO : should we attempt to use this to do OTA updates in the background?
+                case .didConnectPeripheral(peripheral: _):
+                    break
                 }
             }
         )
@@ -76,6 +82,7 @@ let centralManager = CentralManager()
         await MainActor.run {
             self.device = nil
             self.connected = false
+            self.found = false
         }
     }
     
@@ -89,9 +96,11 @@ let centralManager = CentralManager()
                 print("unauthorized")
                 bluetoothUnavailable = true
                 connected = false
+                found = false
             case .poweredOff:
                 bluetoothOff = true
                 connected = false
+                found = false
             default:
                 break
             }
@@ -109,11 +118,40 @@ let centralManager = CentralManager()
         await centralManager.stopScan()
         try await centralManager.connect(peripheral!, options: [CBCentralManagerOptionShowPowerAlertKey: true])
         device = peripheral
-        connected = true
         
+        found = true
+        
+        // force a find of the light device service; there can be multiple instances, a thing AsyncBluetooth's convenience methods don't seem to account for very well
+        try await device!.discoverServices([CBUUID(string: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID)])
+                
+        for service in device!.discoveredServices ?? [] {
+            if service.uuid != CBUUID(string: MW4_BLE_LIGHT_DEVICE_SERVICE_UUID) {
+                break
+            }
+            
+            try await device!.discoverCharacteristics([CBUUID(string: MW4_BLE_ID_CHARACTERISTIC_UUID)], for: service)
+            
+            let idCharacteristic = service.discoveredCharacteristics?.first(where: { $0.uuid == CBUUID(string: MW4_BLE_ID_CHARACTERISTIC_UUID) })
+            try await device!.readValue(for: idCharacteristic!)
+            let id = idCharacteristic!.value!.first!
+            
+            switch id {
+            case 1:
+                await chairLightsService.setDevice(peripheral!, service: service)
+                break
+            case 2:
+                await pedestalLightsService.setDevice(peripheral!, service: service)
+                break
+            default:
+                assert(false) // this should never hit on this costume
+                break
+            }
+        }
+                
         await costumeService.setDevice(peripheral!)
         await frontTextService.setDevice(peripheral!)
-        await pedestalLightsService.setDevice(peripheral!)
+        
+        connected = true
     }
 }
 
@@ -123,6 +161,7 @@ class CostumeManagerMock: CostumeManager {
         super.connected = connected
         super.bluetoothUnavailable = bluetoothUnavailable
         super.bluetoothOff = bluetoothOff
+        super.found = connected
         
         super.costumeService.fwVersion = 0
     }

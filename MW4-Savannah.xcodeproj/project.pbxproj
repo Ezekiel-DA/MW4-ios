@@ -22,17 +22,13 @@
 		B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837528C8518F00CC29ED /* NavBarModifiers.swift */; };
 		B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837728C85D1B00CC29ED /* TextChooserView.swift */; };
 		B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837928C866E300CC29ED /* HColorPickerView.swift */; };
-		B380837C28C9183100CC29ED /* BottomNavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837B28C9183100CC29ED /* BottomNavigationButtons.swift */; };
 		B380837E28C9210200CC29ED /* LightStripEffectChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837D28C9210200CC29ED /* LightStripEffectChooserView.swift */; };
 		B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */; };
 		B3CA5EB928BEB1D800F13DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */; };
 		B3CA5EBC28BEB1D800F13DCE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CA5EBB28BEB1D800F13DCE /* Preview Assets.xcassets */; };
-		B3CA5EC428BEB80200F13DCE /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */; };
-		B3CA5EC628BEBBEE00F13DCE /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC528BEBBEE00F13DCE /* BLEManager.swift */; };
 		B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC728BEC4E300F13DCE /* OTA.swift */; };
 		B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */; };
 		B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */; };
-		B3FA4F9E28C1FC1E00E8BF11 /* TextDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */; };
 		D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */; };
 		D48F810128EBC36300C6394C /* DivideSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810028EBC36300C6394C /* DivideSection.swift */; };
 		D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810628EBC9CE00C6394C /* AudioChooserView.swift */; };
@@ -55,19 +51,15 @@
 		B380837528C8518F00CC29ED /* NavBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarModifiers.swift; sourceTree = "<group>"; };
 		B380837728C85D1B00CC29ED /* TextChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChooserView.swift; sourceTree = "<group>"; };
 		B380837928C866E300CC29ED /* HColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HColorPickerView.swift; sourceTree = "<group>"; };
-		B380837B28C9183100CC29ED /* BottomNavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationButtons.swift; sourceTree = "<group>"; };
 		B380837D28C9210200CC29ED /* LightStripEffectChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightStripEffectChooserView.swift; sourceTree = "<group>"; };
 		B3CA5EB128BEB1D600F13DCE /* Team Savannah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team Savannah.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MW4_SavannahApp.swift; sourceTree = "<group>"; };
 		B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3CA5EBB28BEB1D800F13DCE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3CA5EC228BEB79700F13DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
-		B3CA5EC528BEBBEE00F13DCE /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		B3CA5EC728BEC4E300F13DCE /* OTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTA.swift; sourceTree = "<group>"; };
 		B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeService.swift; sourceTree = "<group>"; };
 		B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDisplayService.swift; sourceTree = "<group>"; };
-		B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayView.swift; sourceTree = "<group>"; };
 		D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostumeGraphicView.swift; sourceTree = "<group>"; };
 		D48F810028EBC36300C6394C /* DivideSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideSection.swift; sourceTree = "<group>"; };
 		D48F810628EBC9CE00C6394C /* AudioChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChooserView.swift; sourceTree = "<group>"; };
@@ -100,9 +92,6 @@
 		B33F8FDC28C1984C001BE3D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B3CA5EC328BEB80200F13DCE /* StatusBarView.swift */,
-				B375062228C1EF420076A244 /* OTAProgressView.swift */,
-				B3FA4F9D28C1FC1E00E8BF11 /* TextDisplayView.swift */,
 				B325255228C7D8FB00D6C4D0 /* CostumeView.swift */,
 				D48F810228EBC36E00C6394C /* ChildPages */,
 				D48F810528EBC99200C6394C /* Chooser */,
@@ -155,7 +144,6 @@
 				B3CA5EC228BEB79700F13DCE /* Info.plist */,
 				B3CA5EB428BEB1D600F13DCE /* MW4_SavannahApp.swift */,
 				B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */,
-				B3CA5EC528BEBBEE00F13DCE /* BLEManager.swift */,
 				B3CA5EBA28BEB1D800F13DCE /* Preview Content */,
 			);
 			path = "MW4-Savannah";
@@ -172,6 +160,7 @@
 		D48F810228EBC36E00C6394C /* ChildPages */ = {
 			isa = PBXGroup;
 			children = (
+				B375062228C1EF420076A244 /* OTAProgressView.swift */,
 				B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */,
 				B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */,
 				B325255628C7D96600D6C4D0 /* TextEffectsView.swift */,
@@ -196,11 +185,10 @@
 				D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */,
 				B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */,
 				B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */,
-				B380837928C866E300CC29ED /* HColorPickerView.swift */,
-				B380837B28C9183100CC29ED /* BottomNavigationButtons.swift */,
 				D4A833E728CD8AD7002834FB /* RainbowColorView.swift */,
 				D48F810028EBC36300C6394C /* DivideSection.swift */,
 				D48F810928EBDE0100C6394C /* SongListView.swift */,
+				B380837928C866E300CC29ED /* HColorPickerView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -283,7 +271,6 @@
 			files = (
 				B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */,
 				B380837E28C9210200CC29ED /* LightStripEffectChooserView.swift in Sources */,
-				B380837C28C9183100CC29ED /* BottomNavigationButtons.swift in Sources */,
 				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
 				D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */,
 				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
@@ -292,14 +279,11 @@
 				D48F810A28EBDE0100C6394C /* SongListView.swift in Sources */,
 				D48F810128EBC36300C6394C /* DivideSection.swift in Sources */,
 				B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */,
-				B3FA4F9E28C1FC1E00E8BF11 /* TextDisplayView.swift in Sources */,
 				B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */,
 				B325255728C7D96600D6C4D0 /* TextEffectsView.swift in Sources */,
-				B3CA5EC628BEBBEE00F13DCE /* BLEManager.swift in Sources */,
 				B325255328C7D8FB00D6C4D0 /* CostumeView.swift in Sources */,
 				B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */,
 				B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */,
-				B3CA5EC428BEB80200F13DCE /* StatusBarView.swift in Sources */,
 				B325255D28C811A600D6C4D0 /* PedestalLightsView.swift in Sources */,
 				B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */,
 				B325255F28C8129A00D6C4D0 /* EffectsListItemView.swift in Sources */,

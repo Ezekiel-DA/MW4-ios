@@ -13,13 +13,14 @@ struct TextEffectsView: View {
     var body: some View {
        
             VStack {
-                CostumeGraphicView(
-                    chairLightColor: .white,
-                    pedLightColor: .white,
-                    isChairRainbow: false,
-                    isPedRainbow: false,
-                    txtDisplay: "I WANT YOU",
-                    txtColor: .white)
+//                CostumeGraphicView(
+//                    costumeManager: // TODO
+//                    chairLightColor: .white,
+//                    pedLightColor: .white,
+//                    isChairRainbow: false,
+//                    isPedRainbow: false,
+//                    txtDisplay: "I WANT YOU",
+//                    txtColor: .white)
 
                 Form {
                     Section {
@@ -31,12 +32,7 @@ struct TextEffectsView: View {
                         TextChooserView(isButtonSection: true, textDisplayService: textDisplayService)
                     }
                 }
-                //BottomNavigationButtons().padding()
             }
-            
-         
-        
-
     }
 }
 

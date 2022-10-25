@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct PedestalLightsView: View {
-    @ObservedObject var lightDeviceService: LightDeviceService
+    @ObservedObject var costumeManager: CostumeManager
     
     var body: some View {
         VStack {
             CostumeGraphicView(
+                chairLightsManager: costumeManager.chairLightsService,
+                pedestalLightsManager: costumeManager.pedestalLightsService,
                 chairLightColor: .white,
-                pedLightColor: .white,
                 isChairRainbow: false,
                 isPedRainbow: false,
                 txtDisplay: "I WANT YOU",
@@ -25,25 +26,22 @@ struct PedestalLightsView: View {
             Form {
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(device: lightDeviceService, isButtonSection: false)
+                        LightStripEffectChooserView(device: costumeManager.pedestalLightsService, isButtonSection: false)
                     }
                 }
                 
                 Section {
                     VStack(alignment: .leading) {
-                        LightStripEffectChooserView(device: lightDeviceService, isButtonSection: true)
+                        LightStripEffectChooserView(device: costumeManager.pedestalLightsService, isButtonSection: true)
                     }
                 }
             }
-            
-           // BottomNavigationButtons().padding()
-      
         }
     }
 }
 
 struct PedestalLightsView_Previews: PreviewProvider {
     static var previews: some View {
-        PedestalLightsView(lightDeviceService: LightDeviceService())
+        PedestalLightsView(costumeManager: CostumeManagerMock(connected: true, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 2))
     }
 }

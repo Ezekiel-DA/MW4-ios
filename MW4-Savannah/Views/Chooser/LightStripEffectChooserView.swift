@@ -8,18 +8,30 @@
 import SwiftUI
 
 enum LightModes: Int, CaseIterable {
+    case Steady
+    case Pulse
+    case RainbowCycle
+    case RainbowWave
+        
+    var title: String {
+        switch self {
+        case .Steady: return "Steady"
+        case .Pulse: return "Pulse"
+        case .RainbowCycle: return "Cycle"
+        case .RainbowWave: return "Wave"
+        }
+    }
+}
+
+enum ColorModes: Int, CaseIterable {
     case White
     case Red
-    case Rainbow
     case Custom
-    
-    
     
     var title: String {
         switch self {
         case .White: return "White"
         case .Red: return "Red"
-        case .Rainbow: return "Rainbow"
         case .Custom: return "Custom"
         }
     }
@@ -30,42 +42,47 @@ struct LightStripEffectChooserView: View {
     
     let isButtonSection: Bool
     @State private var isOn: Bool = true
-    @State private var picked: Int = 0
+    @State private var colorSelection: Int = 0
     
     var body: some View {
         VStack(alignment: .leading) {
             if (isButtonSection) {
-                Toggle(isOn: $isOn) { Text("Button Trigger").fontWeight(.heavy) }
-                Text("Pulse desired color for 3s")
-                    .padding(.bottom)
+//                Toggle(isOn: $isOn) { Text("Button Trigger").fontWeight(.heavy) }
+                HStack {
+                    Text("On button press:").fontWeight(.heavy)
+                    Text("for 60 seconds").font(/*@START_MENU_TOKEN@*/.subheadline/*@END_MENU_TOKEN@*/).fontWeight(.light)
+                }
+                
             }
             else{
-                Text("Default Status").fontWeight(.heavy)
+                //Text("Default:").fontWeight(.heavy)
             }
             //Only show additional UI if the toggle is On
             if (isOn){
-                Text("Color")
-                Picker(selection: $picked, label: Text("Or")) {
+                Text("Mode")
+                Picker(selection: isButtonSection ? Binding($device.modeAlt)! : Binding($device.mode)!, label: Text("Or")) {
                     ForEach(LightModes.allCases, id: \.rawValue) { item in
-                        VStack{
-
-                            Text(item.title).tag(item.rawValue)
-                        }
-                           
                         
-                       
+                            Text(item.title).tag(UInt8(item.rawValue))
+                        
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 
-                Divider()
+                Text("Color")
+                Picker(selection: $colorSelection, label: Text("Or")) {
+                    ForEach(ColorModes.allCases, id: \.rawValue) { item in
+                        VStack{
+                            Text(item.title).tag(item.rawValue)
+                        }
+                    }
+                }.pickerStyle(SegmentedPickerStyle()).disabled(device.mode ?? 0 > 1)
                 
-                if (picked == 3){
-                    HColorPickerView(hue: $device.hue, label: "Color")
-                    
+                if (colorSelection == 2){
+                    HColorPickerView(hue: isButtonSection ?
+                                     device.hueAlt != nil ? Binding($device.hueAlt)! : Binding.constant(0) :
+                                     device.hue != nil ? Binding($device.hue)! : Binding.constant(0), label: "Color")
                 }
             }
-     
-
         }
     }
 }
