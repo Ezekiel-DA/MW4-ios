@@ -27,6 +27,22 @@ enum LightMode: Int, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
+enum ColorMode: Int, CaseIterable, Identifiable {
+    case White
+    case Red
+    case Custom
+    
+    var title: String {
+        switch self {
+        case .White: return "White"
+        case .Red: return "Red"
+        case .Custom: return "Custom"
+        }
+    }
+    
+    var id: Self { self }
+}
+
 struct LightsModelView {
     var state = true
     var color: Color
@@ -40,9 +56,11 @@ struct TextModelView {
     var string: String
 }
 
+let costumeModelView = CostumeModelView()
+
 class CostumeModelView: ObservableObject {
-    @Published var connected = true
-    @Published var ready = true
+    @Published var connected = false
+    @Published var ready = false
     @Published var bluetoothUnavailable = false
     @Published var bluetoothOff = false
     
@@ -56,32 +74,6 @@ class CostumeModelView: ObservableObject {
     @Published var pedestalLights = LightsModelView(color: .white)
     @Published var pedestalLightsAlt = LightsModelView(color: .red)
     
-    @Published var textScreen = TextModelView(string: "TEAM SAVANNAH")
+    @Published var textScreen = TextModelView(string: "")
     @Published var textScreenAlt = TextModelView(string: "I WANT YOU")
-    
-//    @Published var chairLightsState = true
-//    @Published var chairLightsColor = Color.red
-//    @Published var chairLightsMode = LightMode.steady
-//
-//    @Published var chairLightsStateAlt = true
-//    @Published var chairLightsColorAlt = Color.red
-//    @Published var chairLightsModeAlt = LightMode.steady
-//
-//    @Published var pedestalLightsState = true
-//    @Published var pedestalLightsColor = Color.red
-//    @Published var pedestalLightsMode = LightMode.steady
-//
-//    @Published var pedestalLightsStateAlt = true
-//    @Published var pedestalLightsColorAlt = Color.red
-//    @Published var pedestalLightsModeAlt = LightMode.steady
-//
-//    @Published var textState = true
-//    @Published var textScrolling = true
-//    @Published var textFgColor = Color.white
-//    @Published var textString = "TEAM SAVANNAH"
-//
-//    @Published var textStateAlt = true
-//    @Published var textScrollingAlt = true
-//    @Published var textFgColorAlt = Color.white
-//    @Published var textStringAlt = "I WANT YOU"
 }

@@ -23,7 +23,7 @@ let OTA_CONTROL_START = 0x04
 let OTA_CONTROL_END   = 0x08
 let OTA_CONTROL_ERR   = 0xFF
 
-@MainActor class CostumeService : ObservableObject {
+@MainActor class CostumeBLEServiceManager : ObservableObject {
     @Published var fwVersion: UInt8?
     
     @Published var otaProgress = 0.0

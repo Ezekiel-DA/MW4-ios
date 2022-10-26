@@ -28,20 +28,7 @@ struct HColorPickerView: View {
         
         hue = h
     }
-    
-//    init(_ c: Color) {
-//        color = c
-//        let uiC = UIColor(color)
-//        var hueTemp: CGFloat = 0
-//        var saturationTemp: CGFloat = 0
-//        var brightnessTemp: CGFloat = 0
-//        var alphaTemp: CGFloat = 0
-//
-//        uiC.getHue(&hueTemp, saturation: &saturationTemp, brightness: &brightnessTemp, alpha: &alphaTemp)
-//
-//        hue = UInt8(hue / 360 * 255)
-//    }
-    
+        
     var body: some View {
         VStack(alignment: .leading) {
             Slider(value: $hue, in: 0...1)

@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-//var bleMgr = BLEManager()
-
 @main
 struct MW4_SavannahApp: App {
-    
-    //@StateObject var costumeMgr = CostumeManager()
+    let connectionManager = ConnectionManager(modelView: costumeModelView)
     
     var body: some Scene {
         WindowGroup {
-            //CostumeView(costumeManager: costumeMgr)
-            MainView()
+            MainView(costume: costumeModelView, connectionManager: connectionManager)
         }
     }
 }

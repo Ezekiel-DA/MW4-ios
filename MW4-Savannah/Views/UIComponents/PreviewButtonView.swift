@@ -30,10 +30,8 @@ struct PreviewButtonView: View {
     }
 }
 
-//struct PreviewButtonView_Previews: PreviewProvider {
-//    var testBool = false
-//    
-//    static var previews: some View {
-//        PreviewButtonView(triggerBool: Binding(testBool))
-//    }
-//}
+struct PreviewButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        PreviewButtonView(triggerBool: .constant(false))
+    }
+}

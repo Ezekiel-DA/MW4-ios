@@ -8,16 +8,28 @@
 import SwiftUI
 
 struct OTAProgressView: View {
-    @ObservedObject var costumeService: CostumeService
+    @ObservedObject var costumeService: CostumeBLEServiceManager
+    
+    init(costumeService: CostumeBLEServiceManager?) {
+        self.costumeService = costumeService ?? CostumeBLEServiceManager()
+    }
     
     var body: some View {
 //        if costumeService.otaProgress != 0.0 {
             VStack {
+                Text("Update in progress").font(.largeTitle)
+                Spacer()
                 Text("Progress: \(costumeService.otaProgress, specifier: "%.1f") %")
                     .padding(.bottom)
                 
-                Text("Transfer speed : \(costumeService.otaKBps, specifier: "%.1f") kB/s")
-                Text("Elapsed time   : \(costumeService.otaElapsed, specifier: "%.1f") s")
+                Spacer()
+                
+                VStack {
+                    Text("Do not turn off costume. Leave app running.").fontWeight(.bold)
+                    Text("Costume will restart once complete.")
+                }.foregroundColor(.red)
+                
+                Spacer()
             }
 //        }
     }
@@ -25,6 +37,6 @@ struct OTAProgressView: View {
 
 struct OTAProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        OTAProgressView(costumeService: CostumeService())
+        OTAProgressView(costumeService: CostumeBLEServiceManager())
     }
 }

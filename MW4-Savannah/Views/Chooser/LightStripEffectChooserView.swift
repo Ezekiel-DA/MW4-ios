@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-enum ColorMode: Int, CaseIterable, Identifiable {
-    case White
-    case Red
-    case Custom
-    
-    var title: String {
-        switch self {
-        case .White: return "White"
-        case .Red: return "Red"
-        case .Custom: return "Custom"
-        }
-    }	
-    
-    var id: Self { self }
-}
-
 struct LightStripEffectChooserView: View {
     @Binding var lights: LightsModelView
     

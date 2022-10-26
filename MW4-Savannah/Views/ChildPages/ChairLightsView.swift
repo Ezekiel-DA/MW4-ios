@@ -11,26 +11,11 @@ struct ChairLightsView: View {
     @ObservedObject var costume: CostumeModelView
     
     var body: some View {
-        VStack {
-            CostumePreviewView(costume: costume)
-            
-            Form {
-                Section(content: {
-                    LightStripEffectChooserView(lights: $costume.chairLights)
-                }, header: {
-                    Text("Default").fontWeight(.heavy)
-                })
-                
-                Section(content: {
-                    LightStripEffectChooserView(lights: $costume.chairLightsAlt)
-                }, header: {
-                    HStack {
-                        Text("On button press").fontWeight(.heavy)
-                        Text("(for 60 seconds)").fontWeight(.regular)
-                    }
-                })
-            }
-        }
+        DetailsView(costume: costume, defaultContent: {
+            LightStripEffectChooserView(lights: $costume.chairLights)
+        }, altContent: {
+            LightStripEffectChooserView(lights: $costume.chairLightsAlt)
+        })
     }
 }
 

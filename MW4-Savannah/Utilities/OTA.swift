@@ -9,6 +9,9 @@ import Foundation
 
 let manifestURL = "http://mw4-firmware-release.s3-website-us-east-1.amazonaws.com/deployment.json"
 
+// TODO: move this somewhere better than a global
+var updatedFWURL = ""
+
 struct OTAManifest : Decodable {
     let type: String
     let version: Int

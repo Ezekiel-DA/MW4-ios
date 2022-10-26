@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B325255328C7D8FB00D6C4D0 /* CostumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255228C7D8FB00D6C4D0 /* CostumeView.swift */; };
 		B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */; };
 		B325255728C7D96600D6C4D0 /* TextEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255628C7D96600D6C4D0 /* TextEffectsView.swift */; };
 		B325255928C7D97700D6C4D0 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255828C7D97700D6C4D0 /* AudioView.swift */; };
@@ -21,6 +20,10 @@
 		B34D163A29087FA20032E9ED /* CostumeModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163929087FA20032E9ED /* CostumeModelView.swift */; };
 		B34D163C2908837D0032E9ED /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163B2908837D0032E9ED /* MainView.swift */; };
 		B34D163E290883CB0032E9ED /* CostumePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163D290883CB0032E9ED /* CostumePreviewView.swift */; };
+		B34D16402908CEC70032E9ED /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163F2908CEC70032E9ED /* DetailsView.swift */; };
+		B34D16422908DFCB0032E9ED /* CostumeNotPresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D16412908DFCB0032E9ED /* CostumeNotPresentView.swift */; };
+		B34D16442908E6200032E9ED /* DemoModeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D16432908E6200032E9ED /* DemoModeBackground.swift */; };
+		B34D16462908EDC20032E9ED /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D16452908EDC20032E9ED /* ConnectionManager.swift */; };
 		B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B375062228C1EF420076A244 /* OTAProgressView.swift */; };
 		B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837528C8518F00CC29ED /* NavBarModifiers.swift */; };
 		B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837728C85D1B00CC29ED /* TextChooserView.swift */; };
@@ -30,17 +33,15 @@
 		B3CA5EB928BEB1D800F13DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CA5EB828BEB1D800F13DCE /* Assets.xcassets */; };
 		B3CA5EBC28BEB1D800F13DCE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CA5EBB28BEB1D800F13DCE /* Preview Assets.xcassets */; };
 		B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC728BEC4E300F13DCE /* OTA.swift */; };
-		B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */; };
+		B3CA5ECA28BEDFB600F13DCE /* CostumeBLEServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA5EC928BEDFB500F13DCE /* CostumeBLEServiceManager.swift */; };
+		B3E3A6D42908F4F30098B404 /* TextDisplayBLEServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E3A6D32908F4F30098B404 /* TextDisplayBLEServiceManager.swift */; };
 		B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */; };
-		D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */; };
-		D48F810128EBC36300C6394C /* DivideSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810028EBC36300C6394C /* DivideSection.swift */; };
 		D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810628EBC9CE00C6394C /* AudioChooserView.swift */; };
 		D48F810A28EBDE0100C6394C /* SongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F810928EBDE0100C6394C /* SongListView.swift */; };
 		D4A833E828CD8AD7002834FB /* RainbowColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A833E728CD8AD7002834FB /* RainbowColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B325255228C7D8FB00D6C4D0 /* CostumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeView.swift; sourceTree = "<group>"; };
 		B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChairLightsView.swift; sourceTree = "<group>"; };
 		B325255628C7D96600D6C4D0 /* TextEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEffectsView.swift; sourceTree = "<group>"; };
 		B325255828C7D97700D6C4D0 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
@@ -53,6 +54,10 @@
 		B34D163929087FA20032E9ED /* CostumeModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeModelView.swift; sourceTree = "<group>"; };
 		B34D163B2908837D0032E9ED /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B34D163D290883CB0032E9ED /* CostumePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumePreviewView.swift; sourceTree = "<group>"; };
+		B34D163F2908CEC70032E9ED /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		B34D16412908DFCB0032E9ED /* CostumeNotPresentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeNotPresentView.swift; sourceTree = "<group>"; };
+		B34D16432908E6200032E9ED /* DemoModeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoModeBackground.swift; sourceTree = "<group>"; };
+		B34D16452908EDC20032E9ED /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		B375062228C1EF420076A244 /* OTAProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAProgressView.swift; sourceTree = "<group>"; };
 		B380837528C8518F00CC29ED /* NavBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarModifiers.swift; sourceTree = "<group>"; };
 		B380837728C85D1B00CC29ED /* TextChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChooserView.swift; sourceTree = "<group>"; };
@@ -64,10 +69,9 @@
 		B3CA5EBB28BEB1D800F13DCE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3CA5EC228BEB79700F13DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B3CA5EC728BEC4E300F13DCE /* OTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTA.swift; sourceTree = "<group>"; };
-		B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeService.swift; sourceTree = "<group>"; };
+		B3CA5EC928BEDFB500F13DCE /* CostumeBLEServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeBLEServiceManager.swift; sourceTree = "<group>"; };
+		B3E3A6D32908F4F30098B404 /* TextDisplayBLEServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayBLEServiceManager.swift; sourceTree = "<group>"; };
 		B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDisplayService.swift; sourceTree = "<group>"; };
-		D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostumeGraphicView.swift; sourceTree = "<group>"; };
-		D48F810028EBC36300C6394C /* DivideSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideSection.swift; sourceTree = "<group>"; };
 		D48F810628EBC9CE00C6394C /* AudioChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChooserView.swift; sourceTree = "<group>"; };
 		D48F810928EBDE0100C6394C /* SongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListView.swift; sourceTree = "<group>"; };
 		D4A833E728CD8AD7002834FB /* RainbowColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowColorView.swift; sourceTree = "<group>"; };
@@ -89,8 +93,10 @@
 			isa = PBXGroup;
 			children = (
 				B3FA4F9B28C1FB1500E8BF11 /* TextDisplayService.swift */,
-				B3CA5EC928BEDFB500F13DCE /* CostumeService.swift */,
+				B3CA5EC928BEDFB500F13DCE /* CostumeBLEServiceManager.swift */,
 				B34D16332901153B0032E9ED /* LightDeviceService.swift */,
+				B3E3A6D32908F4F30098B404 /* TextDisplayBLEServiceManager.swift */,
+				B34D16452908EDC20032E9ED /* ConnectionManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,7 +104,6 @@
 		B33F8FDC28C1984C001BE3D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B325255228C7D8FB00D6C4D0 /* CostumeView.swift */,
 				B34D163B2908837D0032E9ED /* MainView.swift */,
 				D48F810228EBC36E00C6394C /* ChildPages */,
 				D48F810528EBC99200C6394C /* Chooser */,
@@ -190,14 +195,15 @@
 		D48F810828EBDDBC00C6394C /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				D48F80F828EB597E00C6394C /* CostumeGraphicView.swift */,
+				B34D163F2908CEC70032E9ED /* DetailsView.swift */,
 				B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */,
 				B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */,
 				D4A833E728CD8AD7002834FB /* RainbowColorView.swift */,
-				D48F810028EBC36300C6394C /* DivideSection.swift */,
 				D48F810928EBDE0100C6394C /* SongListView.swift */,
 				B380837928C866E300CC29ED /* HColorPickerView.swift */,
 				B34D163D290883CB0032E9ED /* CostumePreviewView.swift */,
+				B34D16412908DFCB0032E9ED /* CostumeNotPresentView.swift */,
+				B34D16432908E6200032E9ED /* DemoModeBackground.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -283,28 +289,30 @@
 				B380837E28C9210200CC29ED /* LightStripEffectChooserView.swift in Sources */,
 				B34D163A29087FA20032E9ED /* CostumeModelView.swift in Sources */,
 				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
-				D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */,
 				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
 				D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */,
+				B34D16422908DFCB0032E9ED /* CostumeNotPresentView.swift in Sources */,
 				B34D1636290117640032E9ED /* BLE.swift in Sources */,
 				B34D163E290883CB0032E9ED /* CostumePreviewView.swift in Sources */,
 				D48F810A28EBDE0100C6394C /* SongListView.swift in Sources */,
-				D48F810128EBC36300C6394C /* DivideSection.swift in Sources */,
+				B34D16402908CEC70032E9ED /* DetailsView.swift in Sources */,
 				B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */,
 				B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */,
 				B325255728C7D96600D6C4D0 /* TextEffectsView.swift in Sources */,
-				B325255328C7D8FB00D6C4D0 /* CostumeView.swift in Sources */,
 				B3FA4F9C28C1FB1500E8BF11 /* TextDisplayService.swift in Sources */,
 				B3CA5EB528BEB1D600F13DCE /* MW4_SavannahApp.swift in Sources */,
+				B3E3A6D42908F4F30098B404 /* TextDisplayBLEServiceManager.swift in Sources */,
+				B34D16462908EDC20032E9ED /* ConnectionManager.swift in Sources */,
 				B325255D28C811A600D6C4D0 /* PedestalLightsView.swift in Sources */,
 				B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */,
 				B325255F28C8129A00D6C4D0 /* EffectsListItemView.swift in Sources */,
-				B3CA5ECA28BEDFB600F13DCE /* CostumeService.swift in Sources */,
+				B3CA5ECA28BEDFB600F13DCE /* CostumeBLEServiceManager.swift in Sources */,
 				D4A833E828CD8AD7002834FB /* RainbowColorView.swift in Sources */,
 				B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */,
 				B34D16342901153B0032E9ED /* LightDeviceService.swift in Sources */,
 				B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */,
 				B325255928C7D97700D6C4D0 /* AudioView.swift in Sources */,
+				B34D16442908E6200032E9ED /* DemoModeBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

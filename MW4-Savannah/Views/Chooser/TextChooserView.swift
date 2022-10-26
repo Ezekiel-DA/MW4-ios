@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ScrollingModes: Int, CaseIterable {
+enum ScrollingMode: Int, CaseIterable, Identifiable {
     case None
     case Left
 //    case Up
@@ -30,52 +30,86 @@ enum ScrollingModes: Int, CaseIterable {
 //            return "arrow.up"
         }
     }
+    
+    var id: Self { self }
 }
 
 struct TextChooserView: View {
-    let isButtonSection: Bool
+    @Binding var textScreen: TextModelView
+    
     @State private var isOn: Bool = true
-    @State private var picked: Int = 0
+    @State private var colorSelection: ColorMode
+    @State private var scrollingMode: ScrollingMode
     
-    @ObservedObject var textDisplayService: TextDisplayService
-    
+    init(textScreen: Binding<TextModelView>) {
+        _textScreen = textScreen
+        
+        if (textScreen.wrappedValue.color == .white) {
+            colorSelection = .White
+        } else if (textScreen.wrappedValue.color == .red) {
+            colorSelection = .Red
+        } else {
+            colorSelection = .Custom
+        }
+        
+        if (textScreen.wrappedValue.scrolling) {
+            scrollingMode = .Left
+        } else {
+            scrollingMode = .None
+        }
+    }
+        
     var body: some View {
         VStack(alignment: .leading) {
-            if (isButtonSection) {
-                HStack {
-                    Text("On button press:").fontWeight(.heavy)
-                    Text("for 60 seconds").font(/*@START_MENU_TOKEN@*/.subheadline/*@END_MENU_TOKEN@*/).fontWeight(.light)
-                }
-            }
             
             //Only show additional UI if the toggle is On
             if (isOn){
-                Text("Color")
-                Picker(selection: $picked, label: Text("Or")) {
-                    ForEach(ColorMode.allCases, id: \.rawValue) { item in
-                        VStack{
-
-                            Text(item.title).tag(item.rawValue)
+                HStack {
+                    Text("Color")
+                    Picker("Color", selection: $colorSelection) {
+                        ForEach(ColorMode.allCases) { item in
+                            VStack{
+                                Text(item.title)
+                            }
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                    .onChange(of: colorSelection) { newValue in
+                        switch newValue {
+                        case .White:
+                            textScreen.color = Color.white
+                        case .Red:
+                            textScreen.color = Color.red
+                        case .Custom:
+                            break
                         }
                     }
-                }.pickerStyle(SegmentedPickerStyle())
-                
-//                if (picked == 2){
-//                    HColorPickerView(hue: $textDisplayService.hue,label: "Color")
-//                }
-                
+                }
+                if (colorSelection == .Custom){
+                    HColorPickerView(color: $textScreen.color)
+                }
+                                
                 Text("Text")
-                TextField("I WANT YOU", text: Binding($textDisplayService.text)!)
+                TextField("I WANT YOU", text: $textScreen.string)
+                    .textInputAutocapitalization(.characters)
                     .frame(alignment: .leading)
                     .padding(4)
                     .border(.black)
                 Text("Scrolling")
                 
-                Picker(selection: Binding($textDisplayService.scrolling)!, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
-                    ForEach(ScrollingModes.allCases, id: \.rawValue) { item in
-                        Image(systemName: item.graphics).tag(UInt8(item.rawValue))
+                Picker(selection: $scrollingMode, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
+                    ForEach(ScrollingMode.allCases) { item in
+                        Image(systemName: item.graphics)
                     }
-                }.pickerStyle(SegmentedPickerStyle())
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: scrollingMode, perform: {newValue in
+                    switch newValue {
+                    case .None:
+                        textScreen.scrolling = false
+                    case .Left:
+                        textScreen.scrolling = true
+                    }
+                })
             }
         }
     }
@@ -83,6 +117,6 @@ struct TextChooserView: View {
 
 struct TextChooserView_Previews: PreviewProvider {
     static var previews: some View {
-        TextChooserView(isButtonSection: true, textDisplayService: TextDisplayServiceMock(text: "Hello world", scrolling: 1))
+        TextChooserView(textScreen: .constant(TextModelView(string: "TESTING")))
     }
 }
