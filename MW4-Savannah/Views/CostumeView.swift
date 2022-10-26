@@ -8,34 +8,34 @@
 import SwiftUI
 
 enum NavigationTargets: Int, CaseIterable {
-    case ChairLights
-    case PedestalLights
+//    case ChairLights
+//    case PedestalLights
     case Text
 //    case Audio
-    
+
     var title: String {
         switch self {
-        case .ChairLights: return "Chair lights"
-        case .PedestalLights: return "Pedestal lights"
+//        case .ChairLights: return "Chair lights"
+//        case .PedestalLights: return "Pedestal lights"
         case .Text: return "Text effects"
 //        case .Audio: return "Audio"
         }
     }
-    
+
     var effectDescription: String {
         switch self {
-        case .ChairLights: return "Red"
-        case .PedestalLights: return "White, Pulsing"
+//        case .ChairLights: return "Red"
+//        case .PedestalLights: return "White, Pulsing"
         case .Text: return "ON"
 //        case .Audio: return "OFF"
         }
     }
-    
+
     @MainActor @ViewBuilder
     func getView(_ costumeManager: CostumeManager) -> some View {
         switch self {
-        case .ChairLights: ChairLightsView(costumeManager: costumeManager)
-        case .PedestalLights: PedestalLightsView(costumeManager: costumeManager)
+//        case .ChairLights: ChairLightsView(costumeManager: costumeManager)
+//        case .PedestalLights: PedestalLightsView(costumeManager: costumeManager)
         case .Text: TextEffectsView(costumeManager: costumeManager)
 //        case .Audio: AudioView()
         }
@@ -46,7 +46,7 @@ struct CostumeView: View {
     @ObservedObject var costumeManager: CostumeManager
 
     @State private var isOTASheetShowing = false
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -74,7 +74,7 @@ struct CostumeView: View {
                         txtDisplay: Binding($costumeManager.frontTextService.text)!,
                         txtColor: .red)
                     Spacer()
-                    PreviewButtonView(action: {} )
+                    PreviewButtonView(triggerBool: Binding.constant(false))
                         .padding(.bottom)
                 } else {
                     Text(costumeManager.bluetoothOff ?

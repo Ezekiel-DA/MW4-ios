@@ -12,20 +12,35 @@ let FastLEDHueGradient = Gradient(colors: [
 ])
 
 struct HColorPickerView: View {
-    @Binding var hue: UInt8
-    let label: String
+    @Binding var color: Color
+    @State var hue: Double = 0
+    
+//    init(_ c: Color) {
+//        color = c
+//        let uiC = UIColor(color)
+//        var hueTemp: CGFloat = 0
+//        var saturationTemp: CGFloat = 0
+//        var brightnessTemp: CGFloat = 0
+//        var alphaTemp: CGFloat = 0
+//
+//        uiC.getHue(&hueTemp, saturation: &saturationTemp, brightness: &brightnessTemp, alpha: &alphaTemp)
+//
+//        hue = UInt8(hue / 360 * 255)
+//    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            //Text(label)
-            Slider(value: $hue.double, in: 0...255)
+            Slider(value: $hue, in: 0...1)
                 .background(LinearGradient(gradient: FastLEDHueGradient, startPoint: .leading, endPoint: .trailing)).clipShape(Capsule())
+                .onChange(of: hue) {newValue in
+                    color = Color(hue: hue, saturation: 1.0, brightness: 1.0)
+                }
         }
     }
 }
-//
-//struct HColorPickerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HColorPickerView(hue: Binding(UInt8(0)), label: "Preview")
-//    }
-//}
+
+struct HColorPickerView_Previews: PreviewProvider {
+    static var previews: some View {
+        HColorPickerView(color: .constant(.white))
+    }
+}

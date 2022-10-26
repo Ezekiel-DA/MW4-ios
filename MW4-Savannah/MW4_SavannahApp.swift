@@ -12,11 +12,12 @@ import SwiftUI
 @main
 struct MW4_SavannahApp: App {
     
-    @StateObject var costumeMgr = CostumeManager()
+    //@StateObject var costumeMgr = CostumeManager()
     
     var body: some Scene {
         WindowGroup {
-            CostumeView(costumeManager: costumeMgr)
+            //CostumeView(costumeManager: costumeMgr)
+            MainView()
         }
     }
 }

@@ -159,8 +159,8 @@ let ALL_LIGHT_DATA_CHARACTERISTICS = [
             valueAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
             modeAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
             
-            print("mode: ", mode!)
-            print("mode (alt): ", modeAlt!)
+//            print("mode: ", mode!)
+//            print("mode (alt): ", modeAlt!)
                                     
             valueUpdateSubscription = device!.characteristicValueUpdatedPublisher.sink(
                 receiveValue: { value in

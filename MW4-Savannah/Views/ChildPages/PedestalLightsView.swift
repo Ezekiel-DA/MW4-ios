@@ -8,33 +8,27 @@
 import SwiftUI
 
 struct PedestalLightsView: View {
-    @ObservedObject var costumeManager: CostumeManager
+    @ObservedObject var costume: CostumeModelView
     
     var body: some View {
         VStack {
-            CostumeGraphicView(
-                chairLightsManager: costumeManager.chairLightsService,
-                pedestalLightsManager: costumeManager.pedestalLightsService,
-                chairLightColor: .white,
-                isChairRainbow: false,
-                isPedRainbow: false,
-                txtDisplay: Binding($costumeManager.frontTextService.text)!,
-                txtColor: .white)
-            
-            Spacer()
+            CostumePreviewView(costume: costume)
             
             Form {
-                Section {
-                    VStack(alignment: .leading) {
-                        LightStripEffectChooserView(device: costumeManager.pedestalLightsService, isButtonSection: false)
-                    }
-                }
+                Section(content: {
+                    LightStripEffectChooserView(lights: $costume.pedestalLights)
+                }, header: {
+                    Text("Default").fontWeight(.heavy)
+                })
                 
-                Section {
-                    VStack(alignment: .leading) {
-                        LightStripEffectChooserView(device: costumeManager.pedestalLightsService, isButtonSection: true)
+                Section(content: {
+                    LightStripEffectChooserView(lights: $costume.pedestalLightsAlt)
+                }, header: {
+                    HStack {
+                        Text("On button press").fontWeight(.heavy)
+                        Text("(for 60 seconds)").fontWeight(.regular)
                     }
-                }
+                })
             }
         }
     }
@@ -42,6 +36,6 @@ struct PedestalLightsView: View {
 
 struct PedestalLightsView_Previews: PreviewProvider {
     static var previews: some View {
-        PedestalLightsView(costumeManager: CostumeManagerMock(connected: true, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 2))
+        PedestalLightsView(costume: CostumeModelView())
     }
 }

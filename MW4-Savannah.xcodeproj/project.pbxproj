@@ -18,6 +18,9 @@
 		B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */; };
 		B34D16342901153B0032E9ED /* LightDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D16332901153B0032E9ED /* LightDeviceService.swift */; };
 		B34D1636290117640032E9ED /* BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D1635290117630032E9ED /* BLE.swift */; };
+		B34D163A29087FA20032E9ED /* CostumeModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163929087FA20032E9ED /* CostumeModelView.swift */; };
+		B34D163C2908837D0032E9ED /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163B2908837D0032E9ED /* MainView.swift */; };
+		B34D163E290883CB0032E9ED /* CostumePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163D290883CB0032E9ED /* CostumePreviewView.swift */; };
 		B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B375062228C1EF420076A244 /* OTAProgressView.swift */; };
 		B380837628C8518F00CC29ED /* NavBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837528C8518F00CC29ED /* NavBarModifiers.swift */; };
 		B380837828C85D1B00CC29ED /* TextChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B380837728C85D1B00CC29ED /* TextChooserView.swift */; };
@@ -47,6 +50,9 @@
 		B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeManager.swift; sourceTree = "<group>"; };
 		B34D16332901153B0032E9ED /* LightDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDeviceService.swift; sourceTree = "<group>"; };
 		B34D1635290117630032E9ED /* BLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE.swift; sourceTree = "<group>"; };
+		B34D163929087FA20032E9ED /* CostumeModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeModelView.swift; sourceTree = "<group>"; };
+		B34D163B2908837D0032E9ED /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B34D163D290883CB0032E9ED /* CostumePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumePreviewView.swift; sourceTree = "<group>"; };
 		B375062228C1EF420076A244 /* OTAProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAProgressView.swift; sourceTree = "<group>"; };
 		B380837528C8518F00CC29ED /* NavBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarModifiers.swift; sourceTree = "<group>"; };
 		B380837728C85D1B00CC29ED /* TextChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChooserView.swift; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				B325255228C7D8FB00D6C4D0 /* CostumeView.swift */,
+				B34D163B2908837D0032E9ED /* MainView.swift */,
 				D48F810228EBC36E00C6394C /* ChildPages */,
 				D48F810528EBC99200C6394C /* Chooser */,
 				D48F810828EBDDBC00C6394C /* UIComponents */,
@@ -104,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */,
+				B34D163929087FA20032E9ED /* CostumeModelView.swift */,
 			);
 			path = ModelViews;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 				D48F810028EBC36300C6394C /* DivideSection.swift */,
 				D48F810928EBDE0100C6394C /* SongListView.swift */,
 				B380837928C866E300CC29ED /* HColorPickerView.swift */,
+				B34D163D290883CB0032E9ED /* CostumePreviewView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -270,12 +279,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B375062328C1EF420076A244 /* OTAProgressView.swift in Sources */,
+				B34D163C2908837D0032E9ED /* MainView.swift in Sources */,
 				B380837E28C9210200CC29ED /* LightStripEffectChooserView.swift in Sources */,
+				B34D163A29087FA20032E9ED /* CostumeModelView.swift in Sources */,
 				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
 				D48F80F928EB597E00C6394C /* CostumeGraphicView.swift in Sources */,
 				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
 				D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */,
 				B34D1636290117640032E9ED /* BLE.swift in Sources */,
+				B34D163E290883CB0032E9ED /* CostumePreviewView.swift in Sources */,
 				D48F810A28EBDE0100C6394C /* SongListView.swift in Sources */,
 				D48F810128EBC36300C6394C /* DivideSection.swift in Sources */,
 				B325255B28C808CC00D6C4D0 /* PreviewButtonView.swift in Sources */,

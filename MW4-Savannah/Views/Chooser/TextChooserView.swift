@@ -52,7 +52,7 @@ struct TextChooserView: View {
             if (isOn){
                 Text("Color")
                 Picker(selection: $picked, label: Text("Or")) {
-                    ForEach(ColorModes.allCases, id: \.rawValue) { item in
+                    ForEach(ColorMode.allCases, id: \.rawValue) { item in
                         VStack{
 
                             Text(item.title).tag(item.rawValue)

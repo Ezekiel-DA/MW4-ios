@@ -70,8 +70,7 @@ let centralManager = CentralManager()
         Task {
             try await connectToDeviceTask.value
             let availableVersion = try await availableVersionTask.value
-            print(availableVersion)
-            print(costumeService.fwVersion!)
+            print("version: ", costumeService.fwVersion!, " - available: v.", availableVersion)
             if (availableVersion > costumeService.fwVersion!) {
                 updateAvailable = true
             }

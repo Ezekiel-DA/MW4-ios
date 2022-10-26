@@ -8,31 +8,27 @@
 import SwiftUI
 
 struct ChairLightsView: View {
-    @ObservedObject var costumeManager: CostumeManager
+    @ObservedObject var costume: CostumeModelView
     
     var body: some View {
         VStack {
-            CostumeGraphicView(
-                chairLightsManager: costumeManager.chairLightsService,
-                pedestalLightsManager: costumeManager.pedestalLightsService,
-                chairLightColor: .white,
-                isChairRainbow: false,
-                isPedRainbow: false,
-                txtDisplay: Binding($costumeManager.frontTextService.text)!,
-                txtColor: .white)
+            CostumePreviewView(costume: costume)
             
             Form {
-                Section {
-                    VStack(alignment: .leading) {
-                        LightStripEffectChooserView(device: costumeManager.chairLightsService, isButtonSection: false)
-                    }
-                }
+                Section(content: {
+                    LightStripEffectChooserView(lights: $costume.chairLights)
+                }, header: {
+                    Text("Default").fontWeight(.heavy)
+                })
                 
-                Section {
-                    VStack(alignment: .leading) {
-                        LightStripEffectChooserView(device: costumeManager.chairLightsService, isButtonSection: true)
+                Section(content: {
+                    LightStripEffectChooserView(lights: $costume.chairLightsAlt)
+                }, header: {
+                    HStack {
+                        Text("On button press").fontWeight(.heavy)
+                        Text("(for 60 seconds)").fontWeight(.regular)
                     }
-                }
+                })
             }
         }
     }
@@ -40,6 +36,6 @@ struct ChairLightsView: View {
 
 struct ChairLightsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChairLightsView(costumeManager: CostumeManagerMock(connected: true, bluetoothUnavailable: false, bluetoothOff: false, fwVersion: 2))
+        ChairLightsView(costume: CostumeModelView())
     }
 }
