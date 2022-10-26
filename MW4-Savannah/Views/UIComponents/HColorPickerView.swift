@@ -13,7 +13,21 @@ let FastLEDHueGradient = Gradient(colors: [
 
 struct HColorPickerView: View {
     @Binding var color: Color
-    @State var hue: Double = 0
+    @State var hue: Double
+    
+    init(color: Binding<Color>) {
+        _color = color
+        
+        let uiColor = UIColor(color.wrappedValue)
+        var h: CGFloat = 0
+        var s: CGFloat = 0
+        var v: CGFloat = 0
+        var a: CGFloat = 0
+        
+        uiColor.getHue(&h, saturation: &s, brightness: &v, alpha: &a)
+        
+        hue = h
+    }
     
 //    init(_ c: Color) {
 //        color = c

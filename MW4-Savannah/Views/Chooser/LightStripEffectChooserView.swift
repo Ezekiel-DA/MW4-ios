@@ -18,7 +18,7 @@ enum ColorMode: Int, CaseIterable, Identifiable {
         case .Red: return "Red"
         case .Custom: return "Custom"
         }
-    }
+    }	
     
     var id: Self { self }
 }
