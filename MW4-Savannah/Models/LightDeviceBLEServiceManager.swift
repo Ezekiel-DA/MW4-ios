@@ -58,17 +58,35 @@ enum WhichLights: Identifiable {
         self.modelView = modelView
         self.which = which
         
-        self.modelView.$chairLights.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true).sink { val in
-            Task {
-                try await self.writeLightSettings(lightSettings: val)
-            }
-        }.store(in: &appSideUpdates)
-        
-        self.modelView.$chairLightsAlt.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true).sink { val in
-            Task {
-                try await self.writeLightSettings(lightSettings: val, alt: true)
-            }
-        }.store(in: &appSideUpdates)
+        switch which {
+        case .Chair:
+            self.modelView.$chairLights.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true).sink { val in
+                Task {
+                    try await self.writeLightSettings(lightSettings: val)
+                }
+            }.store(in: &appSideUpdates)
+            
+            self.modelView.$chairLightsAlt.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true).sink { val in
+                Task {
+                    try await self.writeLightSettings(lightSettings: val, alt: true)
+                }
+            }.store(in: &appSideUpdates)
+            break
+            
+        case .Pedestal:
+            self.modelView.$pedestalLights.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true).sink { val in
+                Task {
+                    try await self.writeLightSettings(lightSettings: val)
+                }
+            }.store(in: &appSideUpdates)
+            
+            self.modelView.$pedestalLightsAlt.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true).sink { val in
+                Task {
+                    try await self.writeLightSettings(lightSettings: val, alt: true)
+                }
+            }.store(in: &appSideUpdates)
+            break
+        }
     }
     
     private func writeLightSettings(lightSettings val: LightsModelView, alt: Bool = false) async throws {
@@ -77,6 +95,38 @@ enum WhichLights: Identifiable {
             return
         }
         
+        var hueCharacteristicUUID: CBUUID
+        var saturationCharacteristicUUID: CBUUID
+        var valueCharacteristicUUID: CBUUID
+        var modeCharacteristicUUID: CBUUID
+        
+        if (alt) {
+            hueCharacteristicUUID = CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID)
+            saturationCharacteristicUUID = CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID)
+            valueCharacteristicUUID = CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID)
+            modeCharacteristicUUID = CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID)
+        } else {
+            hueCharacteristicUUID = CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID)
+            saturationCharacteristicUUID = CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID)
+            valueCharacteristicUUID = CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID)
+            modeCharacteristicUUID = CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID)
+        }
+        
+        let uiColor = UIColor(val.color)
+        var h: CGFloat = 0
+        var s: CGFloat = 0
+        var v: CGFloat = 0
+        var a: CGFloat = 0
+        uiColor.getHue(&h, saturation: &s, brightness: &v, alpha: &a)
+        
+        let hue = UInt8((Double(h) * 255).rounded())
+        let saturation = UInt8((Double(s) * 255).rounded())
+        let value = UInt8((Double(v) * 255).rounded())
+                        
+        try await device.writeValue(hue.toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == hueCharacteristicUUID})!, type: .withResponse)
+        try await device.writeValue(saturation.toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == saturationCharacteristicUUID})!, type: .withResponse)
+        try await device.writeValue(value.toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == valueCharacteristicUUID})!, type: .withResponse)
+        try await device.writeValue(val.mode.rawValue.toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == modeCharacteristicUUID})!, type: .withResponse)
     }
     
     func setDevice(_ peripheral: Peripheral, service uniqueService: Service) async {
@@ -150,172 +200,6 @@ enum WhichLights: Identifiable {
 //                    }
 //                }
 //            )
-        } catch {
-            assert(false)
-            return
-        }
-    }
-}
-
-@MainActor class LightDeviceService: ObservableObject {
-    @Published var id: UInt8?
-    @Published var state: Bool?
-    @Published var stateAlt: Bool?
-    @Published var mode: UInt8?
-    @Published var modeAlt: UInt8?
-    @Published var hue: UInt8?
-    @Published var hueAlt: UInt8?
-    @Published var saturation: UInt8?
-    @Published var saturationAlt: UInt8?
-    @Published var value: UInt8?
-    @Published var valueAlt: UInt8?
-        
-    internal var device: Peripheral?
-    internal var service: Service?
-    
-    private var valueUpdateSubscription: AnyCancellable?
-    
-    private var appSideUpdates: Set<AnyCancellable> = []
-    
-    init() {
-        $hue.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true)
-            .sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.hue ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        $saturation.sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.saturation ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        $value.sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.value ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        $mode.sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.mode ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        
-        $hueAlt.throttle(for: .milliseconds(500), scheduler: DispatchQueue.main, latest: true)
-            .sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.hueAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        $saturationAlt.sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.saturationAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        $valueAlt.sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.valueAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-        
-        $modeAlt.sink { val in
-            Task {
-                guard let device = self.device else {
-                    return
-                }
-                try await device.writeValue((self.modeAlt ?? 0).toData()!, for: self.service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID) })!, type: .withResponse)
-            }
-        }.store(in: &appSideUpdates)
-    }
-    
-    func setDevice(_ peripheral: Peripheral, service uniqueService: Service) async {
-        device = peripheral
-        service = uniqueService
-        
-        do {
-            try await device!.discoverCharacteristics(ALL_LIGHT_DATA_CHARACTERISTICS, for: service!)
-            
-            for characteristic in service!.discoveredCharacteristics ?? [] {
-                try await device!.readValue(for: characteristic)
-            }
-            
-            for characteristic in ALL_LIGHT_DATA_CHARACTERISTICS {
-                try await device!.setNotifyValue(true, for: service!.discoveredCharacteristics!.first(where: { $0.uuid == characteristic })!)
-            }
-            
-            hue = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID)})?.parsedValue()
-            saturation = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID)})?.parsedValue()
-            value = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID)})?.parsedValue()
-            mode = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID)})?.parsedValue()
-            
-            hueAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
-            saturationAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
-            valueAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
-            modeAlt = try service!.discoveredCharacteristics!.first(where: { $0.uuid == CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID)})?.parsedValue()
-            
-//            print("mode: ", mode!)
-//            print("mode (alt): ", modeAlt!)
-                                    
-            valueUpdateSubscription = device!.characteristicValueUpdatedPublisher.sink(
-                receiveValue: { value in
-                    Task {
-                        switch value.uuid {
-                        case CBUUID(string: MW4_BLE_HUE_CHARACTERISTIC_UUID):
-                            self.hue = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_SATURATION_CHARACTERISTIC_UUID):
-                            self.saturation = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_VALUE_CHARACTERISTIC_UUID):
-                            self.value = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_MODE_CHARACTERISTIC_UUID):
-                            self.mode = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_HUE_ALT_CHARACTERISTIC_UUID):
-                            self.hueAlt = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_SATURATION_ALT_CHARACTERISTIC_UUID):
-                            self.saturationAlt = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_VALUE_ALT_CHARACTERISTIC_UUID):
-                            self.valueAlt = value.value![0]
-                            break
-                        case CBUUID(string: MW4_BLE_MODE_ALT_CHARACTERISTIC_UUID):
-                            self.modeAlt = value.value![0]
-                            break
-                        default:
-                            break
-                        }
-                    }
-                }
-            )
         } catch {
             assert(false)
             return
