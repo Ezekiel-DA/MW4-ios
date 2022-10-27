@@ -77,6 +77,9 @@ struct MainView: View {
                                     costume.connected = true
                                     costume.ready = true
                                     costume.updateAvailable = true
+                                    
+                                    costume.textScreen.string = "TEAM SAVANNAH"
+                                    costume.textScreenAlt.string = "I WANT YOU"
                                 }
                             })
                     }

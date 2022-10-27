@@ -10,6 +10,8 @@ import SwiftUI
 struct CostumePreviewView: View {
     @ObservedObject var costume: CostumeModelView
     
+    @State var textScrollAnimationToggle = true
+    
     var body: some View {
         ZStack {
             //Chair background
@@ -49,14 +51,24 @@ struct CostumePreviewView: View {
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .lineLimit(1)
-                .position(x: 200,y: 280)
-                    
+                .position(x: 200, y: 280)
+//                .offset(x: textScrollAnimationToggle ? 200 : -200, y: 0)
+//                .animation(costume.textScreen.scrolling ? .linear(duration: 5).repeatForever(autoreverses: false) : nil, value: textScrollAnimationToggle)
+//                .onAppear { textScrollAnimationToggle = false }
+            
         }.frame(height:300)
     }
 }
 
 struct CostumePreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        CostumePreviewView(costume: CostumeModelView())
+        NavigationView {
+            VStack {
+                CostumePreviewView(costume: CostumeModelView())
+            }
+            .navigationBarTitle("TEAM SAVANNAH")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleFontStyle(.title1)
+        }
     }
 }
