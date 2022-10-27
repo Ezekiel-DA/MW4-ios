@@ -31,6 +31,26 @@ let MW4_BLE_TEXT_DISPLAY_BRIGHTNESS_ALT_CHARACTERISTIC_UUID      = "a682dc43-803
 let MW4_BLE_TEXT_DISPLAY_FG_COLOR_ALT_CHARACTERISTIC_UUID        = "de7cc85a-7df9-416b-be56-76c5ac8faa89"
 let MW4_BLE_TEXT_DISPLAY_BG_COLOR_ALT_CHARACTERISTIC_UUID        = "fe344d11-3bc2-4511-841b-05f69f80b17f"
 
+let ALL_TEXT_DATA_CHARACTERISTICS = [
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_TEXT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_OFFSET_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SCROLLING_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SCROLL_SPEED_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_PAUSE_TIME_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_BRIGHTNESS_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_FG_COLOR_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_BG_COLOR_CHARACTERISTIC_UUID),
+    
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_TEXT_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_OFFSET_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SCROLLING_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SCROLL_SPEED_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_PAUSE_TIME_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_BRIGHTNESS_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_FG_COLOR_ALT_CHARACTERISTIC_UUID),
+    UUID(uuidString: MW4_BLE_TEXT_DISPLAY_BG_COLOR_ALT_CHARACTERISTIC_UUID)
+]
+
 @MainActor class TextDisplayBLEServiceManager {
     
     @ObservedObject var modelView: CostumeModelView
@@ -85,7 +105,7 @@ let MW4_BLE_TEXT_DISPLAY_BG_COLOR_ALT_CHARACTERISTIC_UUID        = "fe344d11-3bc
         var b: CGFloat = 0
         var a: CGFloat = 0
         uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
-        try await device.writeValue(Data([UInt8(r*255), UInt8(g*255), UInt8(b*255)]), forCharacteristicWithUUID: fgColorCharacteristicUUID, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)
+        try await device.writeValue(Data([UInt8((r*255).rounded()), UInt8((g*255).rounded()), UInt8((b*255).rounded())]), forCharacteristicWithUUID: fgColorCharacteristicUUID, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)
     }
         
     func setDevice(_ peripheral: Peripheral) async {
@@ -99,12 +119,12 @@ let MW4_BLE_TEXT_DISPLAY_BG_COLOR_ALT_CHARACTERISTIC_UUID        = "fe344d11-3bc
             let scrollingAlt: Bool? = try await device!.readValue(forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SCROLLING_ALT_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)
             let fgColorAlt: Data? = try await device!.readValue(forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_FG_COLOR_ALT_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)
             
-            modelView.textScreen.string = text!
-            modelView.textScreen.scrolling = scrolling!
-            modelView.textScreen.color = Color(red: Double(fgColor![0]) / 255, green: Double(fgColor![1]) / 255, blue: Double(fgColor![2]) / 255)
-            modelView.textScreenAlt.string = textAlt!
-            modelView.textScreenAlt.scrolling = scrollingAlt!
-            modelView.textScreenAlt.color = Color(red: Double(fgColorAlt![0]) / 255, green: Double(fgColorAlt![1]) / 255, blue: Double(fgColorAlt![2]) / 255)
+            modelView.textScreen = TextModelView(color: Color(red: Double(fgColor![0]) / 255, green: Double(fgColor![1]) / 255, blue: Double(fgColor![2]) / 255), scrolling: scrolling!, string: text!)
+            modelView.textScreenAlt = TextModelView(color: Color(red: Double(fgColorAlt![0]) / 255, green: Double(fgColorAlt![1]) / 255, blue: Double(fgColorAlt![2]) / 255), scrolling: scrollingAlt!, string: textAlt!)
+            
+            for characteristic in ALL_TEXT_DATA_CHARACTERISTICS {
+                try await device!.setNotifyValue(true, forCharacteristicWithUUID: characteristic!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)
+            }
             
             try await device!.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_TEXT_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)
             try await device!.setNotifyValue(true, forCharacteristicWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_TEXT_ALT_CHARACTERISTIC_UUID)!, ofServiceWithUUID: UUID(uuidString: MW4_BLE_TEXT_DISPLAY_SERVICE_UUID)!)

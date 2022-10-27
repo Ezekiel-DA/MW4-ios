@@ -20,9 +20,11 @@ struct CostumeNotPresentView: View {
                  : costume.ready ? "Costume found, connecting..." : "Please turn on costume"
             )
         }
-        Text("or")
-        Button("use Demo mode") {
-            demoMode = true
+        if (!costume.ready) {
+            Text("or")
+            Button("use Demo mode") {
+                demoMode = true
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ struct TextChooserView: View {
         
         if (textScreen.wrappedValue.color == .white) {
             colorSelection = .White
-        } else if (textScreen.wrappedValue.color == .red) {
+        } else if (textScreen.wrappedValue.color == Color.fullRed) {
             colorSelection = .Red
         } else {
             colorSelection = .Custom
@@ -78,7 +78,7 @@ struct TextChooserView: View {
                         case .White:
                             textScreen.color = Color.white
                         case .Red:
-                            textScreen.color = Color.red
+                            textScreen.color = Color.fullRed
                         case .Custom:
                             break
                         }

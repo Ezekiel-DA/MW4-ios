@@ -21,8 +21,8 @@ class ConnectionManager {
     
     private var disconnectionSubscription: AnyCancellable?  
 
-//    private var chairLightsDevice: LightDeviceBLEServiceManager
-//    private var pedestalLightsDevice: LightDeviceManager
+    private var chairLightsDevice: LightDeviceBLEServiceManager
+    private var pedestalLightsDevice: LightDeviceBLEServiceManager
     
     private var textDisplayService: TextDisplayBLEServiceManager
     
@@ -32,6 +32,8 @@ class ConnectionManager {
         self.modelView  = modelView
         self.costumeService = CostumeBLEServiceManager()
         self.textDisplayService = TextDisplayBLEServiceManager(modelView: modelView)
+        self.chairLightsDevice = LightDeviceBLEServiceManager(modelView: modelView, which: .Chair)
+        self.pedestalLightsDevice = LightDeviceBLEServiceManager(modelView: modelView, which: .Pedestal)
         
         disconnectionSubscription = centralManager.eventPublisher.sink(
             receiveValue: { value in
@@ -142,10 +144,10 @@ class ConnectionManager {
             
             switch id {
             case 1:
-//                await chairLightsService.setDevice(peripheral!, service: service)
+                await chairLightsDevice.setDevice(peripheral!, service: service)
                 break
             case 2:
-//                await pedestalLightsService.setDevice(peripheral!, service: service)
+                await pedestalLightsDevice.setDevice(peripheral!, service: service)
                 break
             default:
                 assert(false) // this should never hit on this costume

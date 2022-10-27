@@ -31,6 +31,7 @@ let OTA_CONTROL_ERR   = 0xFF
     @Published var otaKBps = 0.0
     
     internal var device: Peripheral?
+    
             
     func setDevice(_ peripheral: Peripheral) async {
         device = peripheral
