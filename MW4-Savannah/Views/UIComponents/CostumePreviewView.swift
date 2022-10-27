@@ -16,7 +16,7 @@ struct CostumePreviewView: View {
             Image("chairIconBase").position(x: 200, y: 150)
             
             //If Rainbow is triggered, show rainbow layer
-            if costume.isButtonPressed ? costume.chairLightsAlt.mode.rawValue >= 2 : costume.chairLightsAlt.mode.rawValue >= 2 {
+            if costume.isButtonPressed ? costume.chairLightsAlt.mode.rawValue >= 2 : costume.chairLights.mode.rawValue >= 2 {
                 LinearGradient(gradient: FastLEDHueGradient, startPoint: .leading, endPoint: .trailing)
                     .mask(Image("chairIconLights"))
                     .position(x: 200, y: 150)
@@ -31,7 +31,7 @@ struct CostumePreviewView: View {
             Image("PedestalBase").position(x: 200, y: 150)
             
             //If Rainbow is triggered, show this layer
-            if costume.isButtonPressed ? costume.pedestalLightsAlt.mode.rawValue >= 2 : costume.pedestalLightsAlt.mode.rawValue >= 2 {
+            if costume.isButtonPressed ? costume.pedestalLightsAlt.mode.rawValue >= 2 : costume.pedestalLights.mode.rawValue >= 2 {
                 LinearGradient(gradient: FastLEDHueGradient, startPoint: .bottom, endPoint: .top)
                     .frame(width:300,height:300)
                     .mask(Image("PedestalLights"))
