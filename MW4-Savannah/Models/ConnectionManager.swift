@@ -66,24 +66,6 @@ class ConnectionManager {
         let connectToDeviceTask = Task {
             try await findBLEDevice()
         }
-        
-        let availableVersionTask = Task {
-            let res = try await fetchManifest()
-            let availableVersion = res.version
-            updatedFWURL = "http://" + res.host + res.bin
-            return availableVersion
-        }
-
-        Task {
-            let fwVersion = modelView.fwVersion
-            
-            try await connectToDeviceTask.value
-            let availableVersion = try await availableVersionTask.value
-            print("version: ", fwVersion, " - available: v.", availableVersion)
-            if (availableVersion > fwVersion) {
-                modelView.updateAvailable = true
-            }
-        }
     }
     
     private func clearDevice() async {
@@ -114,6 +96,13 @@ class ConnectionManager {
             }
             
             return
+        }
+        
+        let availableVersionTask = Task {
+            let res = try await fetchManifest()
+            let availableVersion = res.version
+            updatedFWURL = "http://" + res.host + res.bin
+            return availableVersion
         }
         
         var peripheral: Peripheral?
@@ -157,6 +146,17 @@ class ConnectionManager {
         }
                 
         await costumeService.setDevice(peripheral!)
+                
+        Task {
+            let fwVersion = modelView.fwVersion
+            
+            let availableVersion = try await availableVersionTask.value
+            print("version: ", fwVersion, " - available: v.", availableVersion)
+            if (availableVersion > fwVersion) {
+                modelView.updateAvailable = true
+            }
+        }
+        
         await textDisplayService.setDevice(peripheral!)
         
         if modelView.fwVersion >= 3 {
