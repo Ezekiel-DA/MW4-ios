@@ -11,7 +11,7 @@ struct OTAProgressView: View {
     @ObservedObject var costumeService: CostumeBLEServiceManager
     
     init(costumeService: CostumeBLEServiceManager?) {
-        self.costumeService = costumeService ?? CostumeBLEServiceManager()
+        self.costumeService = costumeService ?? CostumeBLEServiceManager(modelView: CostumeModelView())
     }
     
     var body: some View {
@@ -37,6 +37,6 @@ struct OTAProgressView: View {
 
 struct OTAProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        OTAProgressView(costumeService: CostumeBLEServiceManager())
+        OTAProgressView(costumeService: CostumeBLEServiceManager(modelView: CostumeModelView()))
     }
 }

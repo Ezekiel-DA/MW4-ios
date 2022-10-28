@@ -26,14 +26,17 @@ class ConnectionManager {
     
     private var textDisplayService: TextDisplayBLEServiceManager
     
+    private var musicService: MusicBLEServiceManager
+    
     private var centralManager = CentralManager()
         
     init(modelView: CostumeModelView) {
         self.modelView  = modelView
-        self.costumeService = CostumeBLEServiceManager()
+        self.costumeService = CostumeBLEServiceManager(modelView: modelView)
         self.textDisplayService = TextDisplayBLEServiceManager(modelView: modelView)
         self.chairLightsDevice = LightDeviceBLEServiceManager(modelView: modelView, which: .Chair)
         self.pedestalLightsDevice = LightDeviceBLEServiceManager(modelView: modelView, which: .Pedestal)
+        self.musicService = MusicBLEServiceManager(modelView: modelView)
         
         disconnectionSubscription = centralManager.eventPublisher.sink(
             receiveValue: { value in
@@ -72,10 +75,8 @@ class ConnectionManager {
         }
 
         Task {
-            guard let fwVersion = costumeService.fwVersion else {
-                print("Costume version not available; assuming demo mode")
-                return
-            }
+            let fwVersion = modelView.fwVersion
+            
             try await connectToDeviceTask.value
             let availableVersion = try await availableVersionTask.value
             print("version: ", fwVersion, " - available: v.", availableVersion)
@@ -157,6 +158,10 @@ class ConnectionManager {
                 
         await costumeService.setDevice(peripheral!)
         await textDisplayService.setDevice(peripheral!)
+        
+        if modelView.fwVersion >= 3 {
+            await musicService.setDevice(peripheral!)
+        }
         
         self.modelView.connected = true
     }

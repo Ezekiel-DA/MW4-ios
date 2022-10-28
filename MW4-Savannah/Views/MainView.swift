@@ -11,14 +11,14 @@ enum NavigationTarget: Int, CaseIterable {
     case ChairLights
     case PedestalLights
     case Text
-//    case Audio
+    case Audio
     
     var title: String {
         switch self {
         case .ChairLights: return "Chair lights"
         case .PedestalLights: return "Pedestal lights"
         case .Text: return "Text effects"
-//        case .Audio: return "Audio"
+        case .Audio: return "Audio"
         }
     }
     
@@ -27,7 +27,7 @@ enum NavigationTarget: Int, CaseIterable {
         case .ChairLights: return "Red"
         case .PedestalLights: return "White, Pulsing"
         case .Text: return "ON"
-//        case .Audio: return "OFF"
+        case .Audio: return "OFF"
         }
     }
     
@@ -37,7 +37,7 @@ enum NavigationTarget: Int, CaseIterable {
         case .ChairLights: ChairLightsView(costume: costume)
         case .PedestalLights: PedestalLightsView(costume: costume)
         case .Text: TextEffectsView(costume: costume)
-//        case .Audio: AudioView()
+        case .Audio: AudioView(costume: costume)
         }
     }
 }

@@ -8,25 +8,24 @@
 import SwiftUI
 
 struct AudioView: View {
+    @ObservedObject var costume: CostumeModelView
+    
     var body: some View {
         VStack {
-//            CostumeGraphicView(
-//                costumeManager: // TODO
-//                chairLightColor: .white,
-//                pedLightColor: .white,
-//                isChairRainbow: false,
-//                isPedRainbow: false,
-//                txtDisplay: "I WANT YOU",
-//                txtColor: .white)
-//            .frame(height:300)
-           
+            CostumePreviewView(costume: costume)
             Form {
-
                 Section {
-                  //List doesn't seem to work with Form & Section?
-                   // It is not displaying correctly
-                    //Need to figure out later
-                    AudioChooserView()
+                    //AudioChooserView()
+                    
+                    if costume.fwVersion >= 3 {
+                        HStack {
+                            Text("Volume")
+                            Slider(value: $costume.musicControl.volume, in: 0...21, step: 1)
+                        }
+                    } else {
+                        Text("Volume control requires costume firmware version 3.\nPlease upgrade.")
+                    }
+                    
                 }
             }
         }
@@ -36,6 +35,6 @@ struct AudioView: View {
 
 struct AudioView_Previews: PreviewProvider {
     static var previews: some View {
-        AudioView()
+        AudioView(costume: CostumeModelView())
     }
 }

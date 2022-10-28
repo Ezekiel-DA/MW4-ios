@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B30C319F2909BAC100BA22C1 /* LightDeviceBLEServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C319E2909BAC100BA22C1 /* LightDeviceBLEServiceManager.swift */; };
 		B30C31A1290A345C00BA22C1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C31A0290A345C00BA22C1 /* Extensions.swift */; };
+		B30C31A3290B6EF700BA22C1 /* MusicBLEServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C31A2290B6EF700BA22C1 /* MusicBLEServiceManager.swift */; };
 		B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */; };
 		B325255728C7D96600D6C4D0 /* TextEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255628C7D96600D6C4D0 /* TextEffectsView.swift */; };
 		B325255928C7D97700D6C4D0 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255828C7D97700D6C4D0 /* AudioView.swift */; };
@@ -16,7 +17,6 @@
 		B325255D28C811A600D6C4D0 /* PedestalLightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */; };
 		B325255F28C8129A00D6C4D0 /* EffectsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */; };
 		B33F8FD528C011B5001BE3D3 /* AsyncBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = B33F8FD428C011B5001BE3D3 /* AsyncBluetooth */; };
-		B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */; };
 		B34D1636290117640032E9ED /* BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D1635290117630032E9ED /* BLE.swift */; };
 		B34D163A29087FA20032E9ED /* CostumeModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163929087FA20032E9ED /* CostumeModelView.swift */; };
 		B34D163C2908837D0032E9ED /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D163B2908837D0032E9ED /* MainView.swift */; };
@@ -44,13 +44,13 @@
 /* Begin PBXFileReference section */
 		B30C319E2909BAC100BA22C1 /* LightDeviceBLEServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDeviceBLEServiceManager.swift; sourceTree = "<group>"; };
 		B30C31A0290A345C00BA22C1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B30C31A2290B6EF700BA22C1 /* MusicBLEServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBLEServiceManager.swift; sourceTree = "<group>"; };
 		B325255428C7D95B00D6C4D0 /* ChairLightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChairLightsView.swift; sourceTree = "<group>"; };
 		B325255628C7D96600D6C4D0 /* TextEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEffectsView.swift; sourceTree = "<group>"; };
 		B325255828C7D97700D6C4D0 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
 		B325255A28C808CC00D6C4D0 /* PreviewButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewButtonView.swift; sourceTree = "<group>"; };
 		B325255C28C811A600D6C4D0 /* PedestalLightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedestalLightsView.swift; sourceTree = "<group>"; };
 		B325255E28C8129A00D6C4D0 /* EffectsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsListItemView.swift; sourceTree = "<group>"; };
-		B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeManager.swift; sourceTree = "<group>"; };
 		B34D1635290117630032E9ED /* BLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE.swift; sourceTree = "<group>"; };
 		B34D163929087FA20032E9ED /* CostumeModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeModelView.swift; sourceTree = "<group>"; };
 		B34D163B2908837D0032E9ED /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -95,6 +95,7 @@
 				B3CA5EC928BEDFB500F13DCE /* CostumeBLEServiceManager.swift */,
 				B3E3A6D32908F4F30098B404 /* TextDisplayBLEServiceManager.swift */,
 				B30C319E2909BAC100BA22C1 /* LightDeviceBLEServiceManager.swift */,
+				B30C31A2290B6EF700BA22C1 /* MusicBLEServiceManager.swift */,
 				B34D16452908EDC20032E9ED /* ConnectionManager.swift */,
 			);
 			path = Models;
@@ -114,7 +115,6 @@
 		B33F8FDD28C198B1001BE3D3 /* ModelViews */ = {
 			isa = PBXGroup;
 			children = (
-				B33F8FDF28C198CF001BE3D3 /* CostumeManager.swift */,
 				B34D163929087FA20032E9ED /* CostumeModelView.swift */,
 			);
 			path = ModelViews;
@@ -291,6 +291,7 @@
 				B380837A28C866E300CC29ED /* HColorPickerView.swift in Sources */,
 				B325255528C7D95B00D6C4D0 /* ChairLightsView.swift in Sources */,
 				D48F810728EBC9CE00C6394C /* AudioChooserView.swift in Sources */,
+				B30C31A3290B6EF700BA22C1 /* MusicBLEServiceManager.swift in Sources */,
 				B34D16422908DFCB0032E9ED /* CostumeNotPresentView.swift in Sources */,
 				B34D1636290117640032E9ED /* BLE.swift in Sources */,
 				B34D163E290883CB0032E9ED /* CostumePreviewView.swift in Sources */,
@@ -310,7 +311,6 @@
 				D4A833E828CD8AD7002834FB /* RainbowColorView.swift in Sources */,
 				B3CA5EC828BEC4E300F13DCE /* OTA.swift in Sources */,
 				B30C319F2909BAC100BA22C1 /* LightDeviceBLEServiceManager.swift in Sources */,
-				B33F8FE028C198CF001BE3D3 /* CostumeManager.swift in Sources */,
 				B325255928C7D97700D6C4D0 /* AudioView.swift in Sources */,
 				B34D16442908E6200032E9ED /* DemoModeBackground.swift in Sources */,
 			);

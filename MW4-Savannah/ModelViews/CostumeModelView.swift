@@ -56,6 +56,10 @@ struct TextModelView {
     var string: String
 }
 
+struct MusicModelView {
+    var volume: Double = 21
+}
+
 let costumeModelView = CostumeModelView()
 
 class CostumeModelView: ObservableObject {
@@ -64,6 +68,7 @@ class CostumeModelView: ObservableObject {
     @Published var bluetoothUnavailable = false
     @Published var bluetoothOff = false
     
+    @Published var fwVersion: Int = 0
     @Published var updateAvailable = false
     
     @Published var isButtonPressed = false
@@ -76,4 +81,6 @@ class CostumeModelView: ObservableObject {
     
     @Published var textScreen = TextModelView(string: "")
     @Published var textScreenAlt = TextModelView(string: "I WANT YOU")
+    
+    @Published var musicControl = MusicModelView()
 }

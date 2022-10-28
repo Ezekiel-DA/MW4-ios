@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 import CoreBluetooth
 import AsyncBluetooth
@@ -23,8 +24,8 @@ let OTA_CONTROL_START = 0x04
 let OTA_CONTROL_END   = 0x08
 let OTA_CONTROL_ERR   = 0xFF
 
-@MainActor class CostumeBLEServiceManager : ObservableObject {
-    @Published var fwVersion: UInt8?
+@MainActor class CostumeBLEServiceManager: ObservableObject {
+    @ObservedObject var modelView: CostumeModelView
     
     @Published var otaProgress = 0.0
     @Published var otaElapsed = 0.0
@@ -32,11 +33,14 @@ let OTA_CONTROL_ERR   = 0xFF
     
     internal var device: Peripheral?
     
+    init(modelView: CostumeModelView) {
+        self.modelView = modelView
+    }
             
     func setDevice(_ peripheral: Peripheral) async {
         device = peripheral
         let res = await getFWVersion(device!)
-        fwVersion = UInt8(res!)
+        modelView.fwVersion = res!
     }
         
     func sendFWUpdate(_ fw: Data) async {
